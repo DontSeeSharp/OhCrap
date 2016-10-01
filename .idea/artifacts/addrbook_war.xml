@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="addrbook:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="ohcrap.war">
+      <element id="artifact" artifact-name="addrbook:war exploded" />
+    </root>
+  </artifact>
+</component>

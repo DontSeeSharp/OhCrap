@@ -1,0 +1,27 @@
+<!--<input ng-show="showMap" id="pac-input" class="controls" type="text" placeholder="Search Box">
+<div ng-show="showMap" id="map"></div>-->
+<!--
+Auto Complete Type:
+<select ng-model="vm.types">
+    <option value="['geocode']">Geodode</option>
+    <option value="['establishment']">Establishment</option>
+    <option value="['address']">Address</option>
+</select><br/>
+{{vm.types}} <br>
+Enter an address: <br/>
+ <br/>
+
+<div ng-show="vm.place">
+    Address = {{vm.place.formatted_address}} <br/>
+    Location: {{vm.place.geometry.location}}<br/>
+</div>
+address : {{vm.address}}-->
+
+<input class="pac-input controls position" places-auto-complete size=80
+       ng-model="vm.address"
+       component-restrictions="{country:'est'}"
+       types="{{types}}"
+       on-place-changed="vm.placeChanged()" />
+
+<ng-map center="[59.395896, 24.671332]" default-style="false" class="height100"></ng-map>
+
