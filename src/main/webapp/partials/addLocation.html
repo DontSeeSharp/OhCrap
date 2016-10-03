@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<input class="pac-input controls position" places-auto-complete size=80
+       ng-model="vm.address"
+       component-restrictions="{country:'est'}"
+       types="{{types}}"
+       on-place-changed="vm.placeChanged()" />
 
-</body>
-</html>
+
+<ng-map center="[{{location.lat}},{{location.lng}}]" zoom="{{location.zoom}}" default-style="false" class="height100"></ng-map>
+

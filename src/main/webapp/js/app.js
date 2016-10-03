@@ -7,6 +7,24 @@ var addressbookApp = angular.module('addressbookApp', [
 	'addressbookControllers'
 ]);
 
+addressbookApp.factory('locationService', function() {
+	var savedData = {};
+	function set(data) {
+		console.log("set!!!")
+		savedData = data;
+	}
+	function get() {
+		console.log("returning!");
+		console.log(savedData);
+		return savedData;
+	}
+	return {
+		set: set,
+		get: get
+	}
+
+});
+
 addressbookApp.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
