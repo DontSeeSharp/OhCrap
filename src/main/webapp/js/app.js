@@ -14,6 +14,10 @@ addressbookApp.config(['$routeProvider',
 				templateUrl: 'partials/home.html',
 				controller: 'HomeCtrl as vm'
 			}).
+			when('/addLocation', {
+				templateUrl: 'partials/addLocation.html',
+				controller: 'AddLocationCtrl'
+			}).
 			otherwise({
 				redirectTo: '/home'
 			});

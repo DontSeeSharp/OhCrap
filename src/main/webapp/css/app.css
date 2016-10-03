@@ -1,8 +1,10 @@
 /* app css stylesheet */
+@import 'https://fonts.googleapis.com/css?family=Roboto';
 
 body, html {
 	height: 100%;
 	width: 100%;
+	font-family: 'Roboto', sans-serif;
 }
 
 .phones {
@@ -151,7 +153,7 @@ svg rect{
 	margin-left: 12px;
 	padding: 0 11px 0 13px;
 	text-overflow: ellipsis;
-	width: 45%;
+	width: 20%;
 }
 
 .pac-input:focus {
@@ -179,4 +181,109 @@ svg rect{
 
 .height100 {
 	height: 100%;
+}
+
+
+
+/*------------------------ Hamburcer START ------------------------------ */
+
+#nav-icon3 {
+	width: 60px;
+	height: 45px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin-right: 10px;
+	margin-top: 10px;
+	z-index: 1;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+	-webkit-transition: .5s ease-in-out;
+	-moz-transition: .5s ease-in-out;
+	-o-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+	cursor: pointer;
+}
+
+#nav-icon3 span {
+	display: block;
+	position: absolute;
+	height: 9px;
+	width: 100%;
+	background: #d3531a;
+	border-radius: 9px;
+	opacity: 1;
+	left: 0;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+	-webkit-transition: .25s ease-in-out;
+	-moz-transition: .25s ease-in-out;
+	-o-transition: .25s ease-in-out;
+	transition: .25s ease-in-out;
+}
+
+#nav-icon3 span:nth-child(1) {
+	top: 0px;
+}
+
+#nav-icon3 span:nth-child(2),#nav-icon3 span:nth-child(3) {
+	top: 18px;
+}
+
+#nav-icon3 span:nth-child(4) {
+	top: 36px;
+}
+
+#nav-icon3.open span:nth-child(1) {
+	top: 18px;
+	width: 0%;
+	left: 50%;
+}
+
+#nav-icon3.open span:nth-child(2) {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+#nav-icon3.open span:nth-child(3) {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+#nav-icon3.open span:nth-child(4) {
+	top: 18px;
+	width: 0%;
+	left: 50%;
+}
+
+/*------------------------ Hamburger END ------------------------------ */
+
+.menu {
+	top: 0;
+	position: absolute;
+	z-index: 2;
+	height: 100%;
+	width: 80%;
+}
+
+.menu-header {
+	height: 20%;
+	background: deepskyblue;
+}
+
+.menu-content {
+	height: 80%;
+	background: white;
+}
+
+.menu-content .icon {
+	height: 3em;
 }
