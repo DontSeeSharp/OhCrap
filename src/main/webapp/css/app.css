@@ -7,6 +7,10 @@ body, html {
 	font-family: 'Roboto', sans-serif;
 }
 
+.ng-cloak {
+	display: none !important;
+}
+
 .phones {
 	list-style: none;
 }
@@ -114,6 +118,7 @@ svg rect{
 .loading-content {
 	display: table-cell;
 	vertical-align: middle;
+	text-align: center;
 }
 .loading-text {
 	font-size: 4em;
@@ -266,6 +271,8 @@ svg rect{
 
 /*------------------------ Hamburger END ------------------------------ */
 
+/*------------------------ CSS FOR MENU BEGIN ------------------------------- */
+
 .menu {
 	top: 0;
 	position: absolute;
@@ -287,3 +294,31 @@ svg rect{
 .menu-content .icon {
 	height: 3em;
 }
+
+/*---------------------------- CSS FOR MENU END -------------------------------*/
+
+/*---------------------------- CSS FOR LOADING CIRCLE BEGIN -------------------*/
+
+.circle-container {
+	position: relative;
+	display: inline-block;
+	margin: 3%;
+}
+
+.circle {
+	box-sizing: border-box;
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+	border: 10px solid rgba(255, 255, 255, 0.2);
+	border-top-color: #FFF;
+	animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/*-------------------------- CSS FOR LOADING CIRCLE END ------------------------*/

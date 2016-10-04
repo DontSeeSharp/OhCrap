@@ -16,6 +16,7 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 		NgMap.getMap().then(function(map) {
 			vm.map = map;
 		});
+
 		//code for hamburger and menu
 		$scope.menuVisible = false;
 		$scope.ToggleMenu = function() {

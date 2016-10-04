@@ -13,7 +13,6 @@ function onReady(callback) {
 }
 
 function show(id, value) {
-    console.log("id is:" + id + "and value is: " + value)
     document.getElementById(id).style.display = value ? 'block' : 'none';
 }
 
