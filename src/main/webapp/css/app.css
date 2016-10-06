@@ -294,6 +294,9 @@ svg rect{
 .menu-content .icon {
 	height: 3em;
 }
+.active-item:active {
+text-decoration:none;
+color:green;}
 
 /*---------------------------- CSS FOR MENU END -------------------------------*/
 
