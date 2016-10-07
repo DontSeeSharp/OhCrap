@@ -6,6 +6,18 @@ var addressbookControllers = angular.module('addressbookControllers', ['ngMap'])
 
 addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location',
 	function(NgMap, $scope, locationService, $location) {
+
+	    //Code for api request
+        $scope.searchPerson = function() {
+        			$http.get('api/person/' + $scope.searchPersonId)
+        			.success(function(data, status, headers, config) {
+        				console.log('data = ' , data);
+        				$scope.person = data;
+        			})
+        			.error(function(data, status, headers, config) {
+        				console.log('error: data = ' , data);
+        			});
+        		};
 		//Code for google maps api
 		var vm = this;
 		vm.types = "['establishment']";
@@ -15,6 +27,7 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 		};
 		NgMap.getMap().then(function(map) {
 			vm.map = map;
+
 		});
 
 		//code for hamburger and menu
