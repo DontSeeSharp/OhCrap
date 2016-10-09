@@ -14,11 +14,15 @@
 <ng-map center="[59.395896, 24.671332]" default-style="false" class="height100"></ng-map>
 
 <div class="menu" ng-show="menuVisible" ng-controller="MenuCtrl">
-    <div class="menu-header"></div>
+    <div class="menu-header">
+        <div class = "avatarDiv"><img class = "avatar" src="images/User.png" ></div>
+    </div>
+
     <div class="menu-content">
-        <img class="icon" src="images/account.svg"><h class = "active-item">aaaaa</h><br>
-        <img class="icon" src="images/location.svg"><h ng-click="switchToAddLocation()">Add new location</h><br>
-        <img class="icon" src="images/settings.svg"><h>ccccccc</h><br>
+        <div class = "active-item seperateButtons"><img class="icon" src="images/account.svg"><h>Account</h></div>
+        <div class = "active-item seperateButtons" ng-click="switchToAddLocation()"><img class="icon" src="images/location.svg"><h>Add new location</h></div>
+        <div class = "active-item seperateButtons"><img class="icon" src="images/settings.svg"><h>Settings</h></div>
+
     </div>
 </div>
 

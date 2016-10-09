@@ -278,25 +278,49 @@ svg rect{
 	position: absolute;
 	z-index: 2;
 	height: 100%;
-	width: 80%;
+	width: 50%;
 }
 
 .menu-header {
 	height: 20%;
-	background: deepskyblue;
+	background: #336699;
+	border: solid;
+	margin-bottom: 1px;
 }
 
 .menu-content {
 	height: 80%;
-	background: white;
+	background: #999999;
 }
 
 .menu-content .icon {
 	height: 3em;
 }
 .active-item:active {
-text-decoration:none;
-color:green;}
+    background-color:green;
+}
+.seperateButtons {
+    border:solid;
+    margin-bottom: 1px;
+    background-color: #666666;
+}
+.avatarDiv {
+    position:relative;
+     width:200px;
+     height:200px;
+}
+.avatar {
+        position:absolute;
+        top:0;
+        bottom:0;
+        margin:auto;
+        max-height:150px
+        }
+h {
+color : white;
+font-family: Impact;
+}
+
 
 /*---------------------------- CSS FOR MENU END -------------------------------*/
 
