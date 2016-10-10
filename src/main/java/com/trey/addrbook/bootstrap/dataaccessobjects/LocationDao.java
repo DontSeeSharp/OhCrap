@@ -27,11 +27,8 @@ public class LocationDao {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
-    public Location findByAddress(String address) {
-        Map<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("address", address);
-        List<Location> list = jdbcTemplate.query("select * from locations where address = :address", parameters, new LocationRowMapper() );
-
+    public Location getAllBathrooms() {
+        List<Location> list = jdbcTemplate.query("select * from locations", new LocationRowMapper());
         return list.get(0);
     }
 
@@ -44,7 +41,6 @@ public class LocationDao {
             location.setAddress(resultSet.getString("address"));
             location.setLatitude(resultSet.getFloat("lat"));
             location.setLongitude(resultSet.getFloat("len"));
-
 
             return location;
         }

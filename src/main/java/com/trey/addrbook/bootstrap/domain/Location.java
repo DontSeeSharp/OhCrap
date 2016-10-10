@@ -4,6 +4,7 @@ package com.trey.addrbook.bootstrap.domain;
  * Created by Taavi on 06.10.2016.
  */
 public class Location {
+
     private int id;
     private String name;
     private String address;
@@ -41,7 +42,6 @@ public class Location {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
-
 
     public int getId() {
         return id;
