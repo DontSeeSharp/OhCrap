@@ -6,7 +6,6 @@ var addressbookControllers = angular.module('addressbookControllers', ['ngMap'])
 
 addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location',
 	function(NgMap, $scope, locationService, $location) {
-
 	    //Code for api request
         $scope.searchPerson = function() {
         			$http.get('api/person/' + $scope.searchPersonId)
@@ -45,6 +44,11 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 			locationService.set({"lat": vm.map.getCenter().lat().toString(), "lng" : vm.map.getCenter().lng().toString(),
 			"zoom" : vm.map.getZoom()});
 			$location.path("addLocation")
+		};
+
+		$scope.count = function() {
+			console.log("success!!");
+			console.log(vm.map.getCenter());
 		}
 	}
 ]);
@@ -55,9 +59,29 @@ addressbookControllers.controller('MenuCtrl', ['$scope',
 	}
 ]);
 
-addressbookControllers.controller('AddLocationCtrl', ['$scope', 'locationService',
-	function($scope, locationService) {
-		$scope.location = locationService.get();
+addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService', 'NgMap', '$http',
+	function($scope, locationService, NgMap, $http) {
+
+        $scope.location = locationService.get();
+		var vm = this;
+
+        $scope.currentCenterLocation = {"lat": $scope.location.lat, "lng" : $scope.location.lng};
+
+
+		NgMap.getMap().then(function(map) {
+			vm.map = map;
+		});
+
+        $scope.getCurrentCenterLocation = function() {
+            $scope.currentCenterLocation = {"lat": vm.map.getCenter().lat().toString(), "lng" : vm.map.getCenter().lng().toString()};
+            console.log($scope.currentCenterLocation.lat);
+            $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+ $scope.currentCenterLocation.lat
+                + ',' + $scope.currentCenterLocation.lng + '&key=AIzaSyDrXw9BwblAbmcwuljHC-4hhzDvyiW3xsE').then(function(response) {
+                console.log(response.data.results[0].formatted_address);
+            });
+        };
+
+
 	}
 ]);
 

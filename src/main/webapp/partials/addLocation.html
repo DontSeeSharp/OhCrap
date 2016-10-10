@@ -1,9 +1,11 @@
-<input class="pac-input controls position" places-auto-complete size=80
+<input class="pac-input controls position" places-auto-complete size=80 ng-click="count()"
        ng-model="vm.address"
        component-restrictions="{country:'est'}"
        types="{{types}}"
        on-place-changed="vm.placeChanged()" />
 
 
-<ng-map center="[{{location.lat}},{{location.lng}}]" zoom="{{location.zoom}}" default-style="false" class="height100"></ng-map>
+<ng-map ng-mouseup="getCurrentCenterLocation()" center="[{{location.lat}},{{location.lng}}]" zoom="{{location.zoom}}" default-style="false" class="height100">
+    <marker position="{{currentCenterLocation.lat}},{{currentCenterLocation.lng}}"></marker>
+</ng-map>
 
