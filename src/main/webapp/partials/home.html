@@ -13,7 +13,8 @@
 
 <ng-map  zoom="18" center="[59.395896, 24.671332]" default-style="false" class="height100">
     <marker position="current" shape="circle" coords="0,0,10" animation="Animation.BOUNCE" centered="true" color="green"></marker>
-    <marker position="[59.395896, 24.671332]"></marker>
+    <span ng-repeat="bathroom in allBathrooms"><marker position="bathroom.lat, bathroom.lng]"></marker></span>
+
 </ng-map>
 
 <div class="menu" ng-show="menuVisible" ng-controller="MenuCtrl">

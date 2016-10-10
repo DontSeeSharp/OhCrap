@@ -6,15 +6,17 @@ var addressbookControllers = angular.module('addressbookControllers', ['ngMap'])
 
 addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location',
 	function(NgMap, $scope, locationService, $location) {
+        $scope.allBathrooms = {};
+
 	    //Code for api request
-        $scope.searchPerson = function() {
-        			$http.get('api/person/' + $scope.searchPersonId)
-        			.success(function(data, status, headers, config) {
+        $scope.getBathrooms = function() {
+        			$http.get('api/bathrooms/')
+        			.success(function(data) {
         				console.log('data = ' , data);
-        				$scope.person = data;
+        				$scope.allBathrooms = data;
         			})
-        			.error(function(data, status, headers, config) {
-        				console.log('error: data = ' , data);
+        			.error(function(data) {
+        				console.error('error: data = ' , data);
         			});
         		};
 		//Code for google maps api
