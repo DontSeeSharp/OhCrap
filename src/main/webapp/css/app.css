@@ -309,16 +309,8 @@ svg rect{
      width:200px;
      height:200px;
 }
-.avatar {
-        position:absolute;
-        top:0;
-        bottom:0;
-        margin:auto;
-        max-height:150px
-        }
 h {
 color : white;
-font-family: Impact;
 }
 
 
