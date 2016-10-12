@@ -10,7 +10,7 @@ var addressbookApp = angular.module('addressbookApp', [
 addressbookApp.factory('locationService', function() {
 	var savedData = {};
 	function set(data) {
-		console.log("set!!!")
+		console.log("set!!!");
 		savedData = data;
 	}
 	function get() {

@@ -30,6 +30,7 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 			vm.map.setCenter(vm.place.geometry.location);
 		};
 		NgMap.getMap().then(function(map) {
+			console.log("in getMAP!!!!");
 			vm.map = map;
 
 		});
@@ -68,13 +69,24 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 	function($scope, locationService, NgMap, $http) {
 
         $scope.location = locationService.get();
+
+		$scope.checkIfLocationContainsCoordinates = function() {
+			console.log($scope.location.lat);
+			if ($scope.location.lat == null) {
+				$scope.location.lat = 59.395896;
+				$scope.location.lng = 24.671332;
+			}
+		};
+		$scope.checkIfLocationContainsCoordinates();
+
 		var vm = this;
 
         $scope.currentCenterLocation = {"lat": $scope.location.lat, "lng" : $scope.location.lng};
 
-
 		NgMap.getMap().then(function(map) {
+			console.log("here");
 			vm.map = map;
+			console.log(vm.map.getCenter());
 		});
 
         $scope.getCurrentCenterLocation = function() {
