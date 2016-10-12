@@ -1,4 +1,4 @@
-package com.trey.addrbook.bootstrap.domain;
+package domain;
 
 /**
  * Created by Taavi on 06.10.2016.

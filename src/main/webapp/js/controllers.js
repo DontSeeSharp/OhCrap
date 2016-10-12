@@ -4,21 +4,24 @@
 
 var addressbookControllers = angular.module('addressbookControllers', ['ngMap']);
 
-addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location',
-	function(NgMap, $scope, locationService, $location) {
+addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location', '$http',
+	function(NgMap, $scope, locationService, $location, $http) {
         $scope.allBathrooms = {};
 
 	    //Code for api request
         $scope.getBathrooms = function() {
-        			$http.get('api/bathrooms/')
+        			$http.get('toilets')
         			.success(function(data) {
-        				console.log('data = ' , data);
+        				console.log('data = ' , data[0].address);
         				$scope.allBathrooms = data;
+						console.log($scope.allBathrooms);
         			})
         			.error(function(data) {
+                        console.log("error!!");
         				console.error('error: data = ' , data);
         			});
         		};
+		$scope.getBathrooms();
 		//Code for google maps api
 		var vm = this;
 		vm.types = "['establishment']";
