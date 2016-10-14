@@ -22,6 +22,7 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
         			});
         		};
 		$scope.getBathrooms();
+
 		//Code for google maps api
 		var vm = this;
 		vm.types = "['establishment']";
@@ -30,7 +31,6 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 			vm.map.setCenter(vm.place.geometry.location);
 		};
 		NgMap.getMap().then(function(map) {
-			console.log("in getMAP!!!!");
 			vm.map = map;
 
 		});
@@ -46,22 +46,19 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 				$scope.menuVisible = false;
 			}
 		};
+
+		//code to swith url to add location
 		$scope.switchToAddLocation = function() {
 			locationService.set({"lat": vm.map.getCenter().lat().toString(), "lng" : vm.map.getCenter().lng().toString(),
 			"zoom" : vm.map.getZoom()});
 			$location.path("addLocation")
 		};
-
-		$scope.count = function() {
-			console.log("success!!");
-			console.log(vm.map.getCenter());
-		}
 	}
 ]);
 
 addressbookControllers.controller('MenuCtrl', ['$scope',
 	function($scope) {
-		$scope.test = "success!";
+		//TODO IMPLEMENT FUNCTIONS FOR MENU
 	}
 ]);
 
@@ -79,22 +76,28 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 		};
 		$scope.checkIfLocationContainsCoordinates();
 
+		$scope.currentCenterLocation = {"lat": $scope.location.lat, "lng" : $scope.location.lng};
+
+		//Code for google maps api
 		var vm = this;
-
-        $scope.currentCenterLocation = {"lat": $scope.location.lat, "lng" : $scope.location.lng};
-
+		vm.types = "['establishment']";
+		vm.placeChanged = function() {
+			vm.place = this.getPlace();
+			vm.map.setCenter(vm.place.geometry.location);
+		};
 		NgMap.getMap().then(function(map) {
-			console.log("here");
 			vm.map = map;
 			console.log(vm.map.getCenter());
 		});
 
-        $scope.getCurrentCenterLocation = function() {
+		$scope.selectedAddress = "No addresses selected";
+
+        $scope.getAddressFromCenterLocation = function() {
             $scope.currentCenterLocation = {"lat": vm.map.getCenter().lat().toString(), "lng" : vm.map.getCenter().lng().toString()};
             console.log($scope.currentCenterLocation.lat);
             $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+ $scope.currentCenterLocation.lat
                 + ',' + $scope.currentCenterLocation.lng + '&key=AIzaSyDrXw9BwblAbmcwuljHC-4hhzDvyiW3xsE').then(function(response) {
-                console.log(response.data.results[0].formatted_address);
+                $scope.selectedAddress = response.data.results[0].formatted_address;
             });
         };
 

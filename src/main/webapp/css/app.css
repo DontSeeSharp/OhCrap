@@ -3,6 +3,7 @@
 
 body, html {
 	height: 100%;
+    overflow: hidden;
 	width: 100%;
 	font-family: 'Roboto', sans-serif;
 }
@@ -107,13 +108,20 @@ svg path,
 svg rect{
 	fill: #FF6700;
 }
-
+/*--------------------- CSS FOR LOADING SCREEN BEGIN -------------------*/
 .loading-screen {
 	text-align: center;
-	background-color: #402000;
+	background-color: #2c2d31;
 	height: 100%;
 	width: 100%;
 	display: table;
+	position: absolute;
+	z-index: 4;
+	-webkit-animation: fadein 0.5s; /* Safari, Chrome and Opera > 12.1 */
+	-moz-animation: fadein 0.5s; /* Firefox < 16 */
+	-ms-animation: fadein 0.5s; /* Internet Explorer */
+	-o-animation: fadein 0.5s; /* Opera < 12.1 */
+	animation: fadein 0.5s;
 }
 .loading-content {
 	display: table-cell;
@@ -129,6 +137,175 @@ svg rect{
 	display: none;
 }
 
+@keyframes fadein {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+/*-------------------------- CSS FOR LOADING SCREEN END -------------*/
+/*-------------------------- CSS FOR LOADING ICON BEGIN -------------*/
+#loading-wrapper {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+
+#loading-text {
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	color: #999;
+	width: 100px;
+	height: 30px;
+	margin: -7px 0 0 -45px;
+	text-align: center;
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-size: 20px;
+}
+
+#loading-content {
+	display: block;
+	position: relative;
+	left: 50%;
+	top: 50%;
+	width: 170px;
+	height: 170px;
+	margin: -85px 0 0 -85px;
+	border: 3px solid #F00;
+}
+
+#loading-content:after {
+	content: "";
+	position: absolute;
+	border: 3px solid #0F0;
+	left: 15px;
+	right: 15px;
+	top: 15px;
+	bottom: 15px;
+}
+
+#loading-content:before {
+	content: "";
+	position: absolute;
+	border: 3px solid #00F;
+	left: 5px;
+	right: 5px;
+	top: 5px;
+	bottom: 5px;
+}
+
+#loading-content {
+	border: 3px solid transparent;
+	border-top-color: white;
+	border-bottom-color: white;
+	border-radius: 50%;
+	-webkit-animation: loader 2s linear infinite;
+	-moz-animation: loader 2s linear infinite;
+	-o-animation: loader 2s linear infinite;
+	animation: loader 2s linear infinite;
+}
+
+#loading-content:before {
+	border: 3px solid transparent;
+	border-top-color: white;
+	border-bottom-color: white;
+	border-radius: 50%;
+	-webkit-animation: loader 3s linear infinite;
+	-moz-animation: loader 2s linear infinite;
+	-o-animation: loader 2s linear infinite;
+	animation: loader 3s linear infinite;
+}
+
+#loading-content:after {
+	border: 3px solid transparent;
+	border-top-color: white;
+	border-bottom-color: white;
+	border-radius: 50%;
+	-webkit-animation: loader 1.5s linear infinite;
+	animation: loader 1.5s linear infinite;
+	-moz-animation: loader 2s linear infinite;
+	-o-animation: loader 2s linear infinite;
+}
+
+@-webkit-keyframes loaders {
+	0% {
+		-webkit-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes loader {
+	0% {
+		-webkit-transform: rotate(0deg);
+		-ms-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		-ms-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+#content-wrapper {
+	color: #FFF;
+	position: fixed;
+	left: 0;
+	top: 20px;
+	width: 100%;
+	height: 100%;
+}
+
+#header
+{
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
+	height: 100px;
+	background-color: #666;
+}
+
+#content
+{
+	width: 800px;
+	height: 1000px;
+	margin: 0 auto;
+	text-align: center;
+	background-color: #888;
+}
+/*-------------------------- CSS FOR LOADING ICON END ---------------*/
 #map {
 	height: 100%;
 }
@@ -210,15 +387,16 @@ svg rect{
 	-o-transition: .5s ease-in-out;
 	transition: .5s ease-in-out;
 	cursor: pointer;
+    z-index: 3;
 }
 
 #nav-icon3 span {
 	display: block;
 	position: absolute;
-	height: 9px;
-	width: 100%;
-	background: #d3531a;
-	border-radius: 9px;
+	height: 8px;
+	width: 90%;
+	background: #2c2d31;
+	border-radius: 3px;
 	opacity: 1;
 	left: 0;
 	-webkit-transform: rotate(0deg);
@@ -271,76 +449,6 @@ svg rect{
 
 /*------------------------ Hamburger END ------------------------------ */
 
-/*------------------------ CSS FOR MENU BEGIN ------------------------------- */
-
-.menu {
-	top: 0;
-	position: absolute;
-	z-index: 2;
-	height: 100%;
-	width: 100%;
-}
-
-.menu-header {
-	height: 20%;
-	background: #336699;
-	border: solid;
-	margin-bottom: 1px;
-}
-
-.menu-content {
-	height: 80%;
-	background: #999999;
-}
-
-.menu-content .icon {
-	height: 3em;
-}
-.active-item:active {
-    background-color:green;
-}
-.seperateButtons {
-    border:solid;
-    margin-bottom: 1px;
-    background-color: #666666;
-}
-.avatarDiv {
-    position:relative;
-     width:200px;
-     height:200px;
-}
-h {
-color : white;
-}
-
-
-/*---------------------------- CSS FOR MENU END -------------------------------*/
-
-/*---------------------------- CSS FOR LOADING CIRCLE BEGIN -------------------*/
-
-.circle-container {
-	position: relative;
-	display: inline-block;
-	margin: 3%;
-}
-
-.circle {
-	box-sizing: border-box;
-	width: 60px;
-	height: 60px;
-	border-radius: 100%;
-	border: 10px solid rgba(255, 255, 255, 0.2);
-	border-top-color: #FFF;
-	animation: spin 1s infinite linear;
-}
-
-@keyframes spin {
-	100% {
-		transform: rotate(360deg);
-	}
-}
-
-/*-------------------------- CSS FOR LOADING CIRCLE END ------------------------*/
 /*-------------------------- CSS FOR ADD LOCATION BEGIN ------------------------*/
 #add-location-map:after {
 	width: 22px;
@@ -354,3 +462,96 @@ color : white;
 	background-size: 22px 40px; /* Since I used the HiDPI marker version this compensates for the 2x size */
 	pointer-events: none; /* This disables clicks on the marker. Not fully supported by all major browsers, though */
 }
+/*------------------------- CSS FOR ADD LOCATION END ----------------------------*/
+/*------------------------- CSS FOR MENU BEGIN ---------------------------*/
+
+div.menu ul li {
+    z-index: 2;
+    font:12px "Open Sans", sans-serif;
+    list-style: none;
+    position:absolute;
+    top:50px;;
+    left:0;
+    opacity:0;
+    width:320px;
+    text-align:center;
+    font-size:0px;
+    -webkit-transition: all 70ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -moz-transition: all 70ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -ms-transition: all 70ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -o-transition: all 70ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    transition: all 70ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+}
+div.menu ul li a {
+    color:#4a89dc;
+    text-transform:uppercase;
+    text-decoration:none;
+    letter-spacing:3px;
+}
+
+div.menu li.animate{
+    font-size:21px;
+    opacity:1;
+    -webkit-transition: all 150ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -moz-transition: all 150ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -ms-transition: all 150ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -o-transition: all 150ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    transition: all 150ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+}
+div.menu li.animate:nth-of-type(1){
+    top:120px;
+    transition-delay: 0.0s;
+}
+div.menu li.animate:nth-of-type(2){
+    top:190px;
+    transition-delay: 0.03s;
+
+}
+div.menu li.animate:nth-of-type(3){
+    top:260px;
+    transition-delay: 0.06s;
+
+}
+div.menu li.animate:nth-of-type(4){
+    top:330px;
+    transition-delay: 0.09s;
+
+}
+div.menu li.animate:nth-of-type(5){
+    top:400px;
+    transition-delay: 0.12s;
+
+}
+div.menu li.animate:nth-of-type(6){
+    top:470px;
+    transition-delay: 0.15s;
+}
+div.circle{
+    border-radius: 50%;
+    width: 0px;
+    height: 0px;
+    position:absolute;
+    top: 35px;
+    left: 36px;
+    background:#fff;
+    opacity:1;
+    -webkit-transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -moz-transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -ms-transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -o-transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    z-index: 2;
+}
+div.circle.expand{
+    width:1200px;
+    height:1200px;
+    top: -560px;
+    left: -565px;
+    -webkit-transition: all 400ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -moz-transition: all 400ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -ms-transition: all 400ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    -o-transition: all 400ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+    transition: all 400ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+
+}
+/*--------------------------------- CSS FOR MENU END -------------------*/

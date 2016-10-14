@@ -4,7 +4,7 @@
        types="{{types}}"
        on-place-changed="vm.placeChanged()" />
 
-<div id="nav-icon3" ng-click="ToggleMenu()">
+<div class="" id="nav-icon3" ng-click="ToggleMenu()">
     <span></span>
     <span></span>
     <span></span>
@@ -17,14 +17,16 @@
 
 </ng-map>
 
-<div class="menu" ng-show="menuVisible" ng-controller="MenuCtrl">
-    <div class="menu-header"></div>
-
-    <div class="menu-content">
-        <div class = "active-item seperateButtons"><img class="icon" src="images/account.svg"><h>Account</h></div>
-        <div class = "active-item seperateButtons" ng-click="switchToAddLocation()"><img class="icon" src="images/location.svg"><h>Add new location</h></div>
-        <div class = "active-item seperateButtons"><img class="icon" src="images/settings.svg"><h>Settings</h></div>
-
+    <div class="circle" ng-class="{'expand':menuVisible}"></div>
+    <div class="menu" ng-class="{'animate':menuVisible}">
+        <ul>
+            <li ng-class="{'animate':menuVisible}"><a href="">Account</a></li>
+            <li ng-class="{'animate':menuVisible}" ng-click="switchToAddLocation()"><a href="">Add new location</a></li>
+            <li ng-class="{'animate':menuVisible}"><a href="">Settings</a></li>
+            <li ng-class="{'animate':menuVisible}"><a href="">Activity</a></li>
+            <li ng-class="{'animate':menuVisible}"><a href="">Contact</a></li>
+        </ul>
     </div>
-</div>
+
+
 
