@@ -38,11 +38,11 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 		//code for hamburger and menu
 		$scope.menuVisible = false;
 		$scope.ToggleMenu = function() {
-			if (document.getElementById("nav-icon3").className == ""){
+			if (document.getElementById("nav-icon3").className == "ng-scope"){
 				document.getElementById("nav-icon3").className = "open";
 				$scope.menuVisible = true;
 			} else {
-				document.getElementById("nav-icon3").className = "";
+				document.getElementById("nav-icon3").className = "ng-scope";
 				$scope.menuVisible = false;
 			}
 		};
@@ -101,7 +101,21 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
             });
         };
 
-
-	}
-]);
+}]).directive('myTouchstart', [function() {
+	return function(scope, element, attr) {
+		element.on('touchstart', function(event) {
+			scope.$apply(function() {
+				scope.$eval(attr.myTouchstart);
+			});
+		});
+	};
+}]).directive('myTouchend', [function() {
+	return function(scope, element, attr) {
+		element.on('touchend', function(event) {
+			scope.$apply(function() {
+				scope.$eval(attr.myTouchend);
+			});
+		});
+	};
+}]);
 

@@ -1,7 +1,7 @@
 <input class="pac-input controls position" size=80 value="{{selectedAddress}}" readonly>
 
 
-<ng-map ng-mouseup="getAddressFromCenterLocation()" center="[{{location.lat}},{{location.lng}}]" zoom="{{location.zoom}}" default-style="false" class="height100">
+<ng-map ng-mouseup="getAddressFromCenterLocation()" my-touchend="getAddressFromCenterLocation()"center="[{{location.lat}},{{location.lng}}]" zoom="{{location.zoom}}" default-style="false" class="height100">
     <marker color="green" position="{{currentCenterLocation.lat}},{{currentCenterLocation.lng}}"></marker>
 </ng-map>
 <span id="add-location-map"></span>
