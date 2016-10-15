@@ -461,9 +461,40 @@ svg rect{
 	margin-right: 10px;
 	margin-top: 10px;
 	z-index: 1;
+
+}
+.backBtn:active {
+    height: 55px;
+    width: 70px;
 }
 
 /*------------------------ Backbutton End ------------------------------ */
+
+/*------------------------ AddButton Start ------------------------------ */
+.img-circle {
+    border-radius: 40%;
+    border: solid 3px;
+}
+
+
+.addLocationBtn {
+	width: 60px;
+	height: 45px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin-right: 50px;
+	margin-bottom: 70px;
+	z-index: 1;
+
+}
+.addLocationBtn:active {
+    height: 55px;
+    width: 70px;
+}
+
+/*------------------------ Addbutton End ------------------------------ */
+
 
 
 /*-------------------------- CSS FOR ADD LOCATION BEGIN ------------------------*/
