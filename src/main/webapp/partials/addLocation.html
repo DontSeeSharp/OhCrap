@@ -1,6 +1,6 @@
 <input class="pac-input controls position" size=80 value="{{selectedAddress}}" readonly>
 
-<div class="backBtn"><img src="images/backbtn.png" > </div>
+<div class="backBtn" ng-click="switchToHome()"><img src="images/backbtn.png" > </div>
 
 <ng-map ng-mouseup="getAddressFromCenterLocation()" my-touchend="getAddressFromCenterLocation()"center="[{{location.lat}},{{location.lng}}]" zoom="{{location.zoom}}" default-style="false" class="height100">
     <marker color="green" position="{{currentCenterLocation.lat}},{{currentCenterLocation.lng}}"></marker>

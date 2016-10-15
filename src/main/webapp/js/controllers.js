@@ -62,8 +62,8 @@ addressbookControllers.controller('MenuCtrl', ['$scope',
 	}
 ]);
 
-addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService', 'NgMap', '$http',
-	function($scope, locationService, NgMap, $http) {
+addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService', 'NgMap','$location', '$http',
+	function($scope, locationService, NgMap, $location, $http) {
 
         $scope.location = locationService.get();
 
@@ -74,6 +74,9 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 				$scope.location.lng = 24.671332;
 			}
 		};
+		$scope.switchToHome = function() {
+        			$location.path("home")
+        		};
 		$scope.checkIfLocationContainsCoordinates();
 
 		$scope.currentCenterLocation = {"lat": $scope.location.lat, "lng" : $scope.location.lng};
