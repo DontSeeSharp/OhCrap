@@ -451,6 +451,21 @@ svg rect{
 
 /*------------------------ Hamburger END ------------------------------ */
 
+/*------------------------ Backbutton Start ------------------------------ */
+.backBtn {
+	width: 60px;
+	height: 45px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin-right: 10px;
+	margin-top: 10px;
+	z-index: 1;
+}
+
+/*------------------------ Backbutton End ------------------------------ */
+
+
 /*-------------------------- CSS FOR ADD LOCATION BEGIN ------------------------*/
 #add-location-map:after {
 	width: 22px;
