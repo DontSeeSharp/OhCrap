@@ -65,6 +65,23 @@ addressbookControllers.controller('MenuCtrl', ['$scope',
 addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService', 'NgMap','$location', '$http',
 	function($scope, locationService, NgMap, $location, $http) {
 
+		$scope.allBathrooms = {};
+
+		//Code for api request
+		$scope.getBathrooms = function() {
+			$http.get('toilets')
+				.success(function(data) {
+					console.log('data = ' , data[0].address);
+					$scope.allBathrooms = data;
+					console.log($scope.allBathrooms);
+				})
+				.error(function(data) {
+					console.log("error!!");
+					console.error('error: data = ' , data);
+				});
+		};
+		$scope.getBathrooms();
+
 		//Code for google maps api
 		var vm = this;
 		vm.types = "['establishment']";
@@ -80,17 +97,18 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
         $scope.location = locationService.get();
 
 		$scope.checkIfLocationContainsCoordinates = function() {
-			console.log($scope.location.lat);
 			if ($scope.location.lat == null) {
 				// Try HTML5 geolocation.
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(function(position) {
 						$scope.location.lat = position.coords.latitude;
 						$scope.location.lng = position.coords.longitude;
+						$scope.location.zoom = 18;
 					});
 				} else {
 					$scope.location.lat = 59.395896;
 					$scope.location.lng = 24.671332;
+					$scope.location.zoom = 18;
 				}
 			}
 		};

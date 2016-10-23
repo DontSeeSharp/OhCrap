@@ -2,6 +2,7 @@ package controllers;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import domain.Location;
+import dto.save.SaveLocationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -42,8 +44,12 @@ public class LocationController {
     }
 
     @RequestMapping(value = "addToilet", method = RequestMethod.POST)
-    public void addToilet() {
-        return jdbcTemplate.update("");
+    public void addToilet(@RequestBody SaveLocationRequest request) {
+        HashMap hashMap = new HashMap();
+        hashMap.put("address", request.getAddress());
+        hashMap.put("lat", request.getLat());
+        hashMap.put("lng", request.getLng());
+        jdbcTemplate.update("insert into locations (address, lat, lng) VALUES(:address, :lat, :lng)", hashMap);
     }
 
     private static class LocationRowMapper implements RowMapper<Location> {
@@ -51,7 +57,7 @@ public class LocationController {
             Location location = new Location();
             location.setId(res.getInt("id"));
             location.setLatitude(res.getDouble("lat"));
-            location.setLongitude(res.getDouble("len"));
+            location.setLongitude(res.getDouble("lng"));
             location.setAddress(res.getString("address"));
             return location;
         }
