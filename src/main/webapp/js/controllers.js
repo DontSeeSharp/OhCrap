@@ -65,22 +65,6 @@ addressbookControllers.controller('MenuCtrl', ['$scope',
 addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService', 'NgMap','$location', '$http',
 	function($scope, locationService, NgMap, $location, $http) {
 
-        $scope.location = locationService.get();
-
-		$scope.checkIfLocationContainsCoordinates = function() {
-			console.log($scope.location.lat);
-			if ($scope.location.lat == null) {
-				$scope.location.lat = 59.395896;
-				$scope.location.lng = 24.671332;
-			}
-		};
-		$scope.switchToHome = function() {
-        			$location.path("home")
-        		};
-		$scope.checkIfLocationContainsCoordinates();
-
-		$scope.currentCenterLocation = {"lat": $scope.location.lat, "lng" : $scope.location.lng};
-
 		//Code for google maps api
 		var vm = this;
 		vm.types = "['establishment']";
@@ -90,19 +74,61 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 		};
 		NgMap.getMap().then(function(map) {
 			vm.map = map;
-			console.log(vm.map.getCenter());
+			console.log(vm.map);
 		});
+
+        $scope.location = locationService.get();
+
+		$scope.checkIfLocationContainsCoordinates = function() {
+			console.log($scope.location.lat);
+			if ($scope.location.lat == null) {
+				// Try HTML5 geolocation.
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(position) {
+						$scope.location.lat = position.coords.latitude;
+						$scope.location.lng = position.coords.longitude;
+					});
+				} else {
+					$scope.location.lat = 59.395896;
+					$scope.location.lng = 24.671332;
+				}
+			}
+		};
+		$scope.checkIfLocationContainsCoordinates();
+
+		$scope.switchToHome = function() {
+        			$location.path("home")
+        		};
+
+		$scope.currentCenterLocation = {"lat": $scope.location.lat, "lng" : $scope.location.lng};
 
 		$scope.selectedAddress = "No addresses selected";
 
         $scope.getAddressFromCenterLocation = function() {
             $scope.currentCenterLocation = {"lat": vm.map.getCenter().lat().toString(), "lng" : vm.map.getCenter().lng().toString()};
             console.log($scope.currentCenterLocation.lat);
+			console.log($scope.currentCenterLocation.lng);
             $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+ $scope.currentCenterLocation.lat
                 + ',' + $scope.currentCenterLocation.lng + '&key=AIzaSyDrXw9BwblAbmcwuljHC-4hhzDvyiW3xsE').then(function(response) {
                 $scope.selectedAddress = response.data.results[0].formatted_address;
             });
         };
+
+        $scope.addLocation = function() {
+			$http.post('addToilet',
+				{
+					"lat": $scope.currentCenterLocation.lat,
+					"lng": $scope.currentCenterLocation.lng,
+					"address": $scope.selectedAddress
+			})
+				.success(function(data) {
+					console.log("toilet added");
+				})
+				.error(function(data) {
+					console.log("error!!");
+					console.error('error: data = ' , data);
+				});
+		}
 
 }]).directive('myTouchstart', [function() {
 	return function(scope, element, attr) {

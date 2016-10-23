@@ -2,9 +2,9 @@
 
 <div class="backBtn" ng-click="switchToHome()"><img src="images/backbtn.png" > </div>
 
-<ng-map ng-mouseup="getAddressFromCenterLocation()" my-touchend="getAddressFromCenterLocation()"center="[{{location.lat}},{{location.lng}}]" zoom="{{location.zoom}}" default-style="false" class="height100">
+<ng-map ng-mouseup="getAddressFromCenterLocation()" my-touchend="getAddressFromCenterLocation()"center="[{{location.lat}},{{location.lng}}]" zoom="18" default-style="false" class="height100">
     <marker color="green" position="{{currentCenterLocation.lat}},{{currentCenterLocation.lng}}"></marker>
-    <div class="addLocationBtn"><img src="images/addToilet.png" class="img-circle" > </div>
+    <div class="addLocationBtn" ng-click="addLocation()"><img src="images/addToilet.png" class="img-circle"></div>
 </ng-map>
 
 <span id="add-location-map"></span>

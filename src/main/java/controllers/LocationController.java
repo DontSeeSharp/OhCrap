@@ -41,6 +41,11 @@ public class LocationController {
         return jdbcTemplate.query("select * from locations", new LocationRowMapper());
     }
 
+    @RequestMapping(value = "addToilet", method = RequestMethod.POST)
+    public void addToilet() {
+        return jdbcTemplate.update("");
+    }
+
     private static class LocationRowMapper implements RowMapper<Location> {
         public Location mapRow(ResultSet res, int rowNum) throws SQLException {
             Location location = new Location();
