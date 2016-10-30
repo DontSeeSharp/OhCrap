@@ -20,7 +20,7 @@ import java.util.List;
  */
 @RestController
 public class LocationController {
-    private NamedParameterJdbcTemplate  jdbcTemplate;
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
     public LocationController(DataSource dataSource2) {
