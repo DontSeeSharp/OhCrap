@@ -36,6 +36,10 @@ addressbookApp.config(['$routeProvider',
 				templateUrl: 'partials/addLocation.html',
 				controller: 'addLocationCtrl'
 			}).
+			when('/SignIn', {
+            				templateUrl: 'partials/SignIn.html',
+            				controller: ''
+            			}).
 			otherwise({
 				redirectTo: '/home'
 			});
