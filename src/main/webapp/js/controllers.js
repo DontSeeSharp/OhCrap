@@ -65,7 +65,7 @@ addressbookControllers.controller('MenuCtrl', ['$scope',
 addressbookControllers.controller('createAccountCtrl',['$scope','$http',
     function($scope, $http) {
     }
-    *//
+    */
 
 addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService', 'NgMap','$location', '$http',
 	function($scope, locationService, NgMap, $location, $http) {
