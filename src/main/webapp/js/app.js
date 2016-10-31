@@ -38,10 +38,11 @@ addressbookApp.config(['$routeProvider',
 			}).
 			when('/SignIn', {
             				templateUrl: 'partials/SignIn.html',
-            				controller: ''
+            				controller: 'createAccountCtrl'
             			}).
 			otherwise({
 				redirectTo: '/home'
 			});
 	}
 ]);
+
