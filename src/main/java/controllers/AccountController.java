@@ -2,7 +2,6 @@ package controllers;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import dto.save.CreateAccountRequest;
-import dto.save.SaveLocationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
