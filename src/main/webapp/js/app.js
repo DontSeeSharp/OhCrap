@@ -37,8 +37,8 @@ addressbookApp.config(['$routeProvider',
 				controller: 'addLocationCtrl'
 			}).
 			when('/SignIn', {
-            				templateUrl: 'partials/SignIn.html',
-            				controller: 'createAccountCtrl'
+            	templateUrl: 'partials/SignIn.html',
+            	controller: 'createAccountCtrl'
             			}).
 			otherwise({
 				redirectTo: '/home'
