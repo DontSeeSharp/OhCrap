@@ -56,16 +56,114 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 	}
 ]);
 
-addressbookControllers.controller('MenuCtrl', ['$scope',
-	function($scope) {
-		//TODO IMPLEMENT FUNCTIONS FOR MENU
+addressbookControllers.controller('loginCtrl', ['$rootScope', '$http', '$location', '$route', '$scope',
+	function($rootScope, $http, $location, $route, $scope) {
+
+		$scope.tab = function(route) {
+			return $route.current && route === $route.current.controller;
+		};
+
+		var authenticate = function(credentials, callback) {
+
+			var headers = credentials ? {
+				authorization : "Basic "
+				+ btoa(credentials.username + ":"
+					+ credentials.password)
+			} : {};
+
+			$http.get('user', {
+				headers : headers
+			}).then(function(response) {
+				if (response.data.name) {
+					$rootScope.authenticated = true;
+				} else {
+					$rootScope.authenticated = false;
+				}
+				callback && callback($rootScope.authenticated);
+			}, function() {
+				$rootScope.authenticated = false;
+				callback && callback(false);
+			});
+
+		};
+
+		authenticate();
+
+		$scope.credentials = {};
+		$scope.login = function() {
+			console.log("pressed login!");
+			authenticate($scope.credentials, function(authenticated) {
+				if (authenticated) {
+					console.log("Login succeeded")
+					$location.path("/");
+					$scope.error = false;
+					$rootScope.authenticated = true;
+				} else {
+					console.log("Login failed")
+					$location.path("/login");
+					$scope.error = true;
+					$rootScope.authenticated = false;
+				}
+			})
+		};
+
+		$scope.logout = function() {
+			$http.post('logout', {}).finally(function() {
+				$rootScope.authenticated = false;
+				$location.path("/");
+			});
+		}
 	}
 ]);
-/**
+
 addressbookControllers.controller('createAccountCtrl',['$scope','$http',
     function($scope, $http) {
+		jQuery('.form').find('input, textarea').on('keyup blur focus', function (e) {
+
+			var jQuerythis = jQuery(this),
+				label = jQuerythis.prev('label');
+
+			if (e.type === 'keyup') {
+				if (jQuerythis.val() === '') {
+					label.removeClass('active highlight');
+				} else {
+					label.addClass('active highlight');
+				}
+			} else if (e.type === 'blur') {
+				if( jQuerythis.val() === '' ) {
+					label.removeClass('active highlight');
+				} else {
+					label.removeClass('highlight');
+				}
+			} else if (e.type === 'focus') {
+
+				if( jQuerythis.val() === '' ) {
+					label.removeClass('highlight');
+				}
+				else if( jQuerythis.val() !== '' ) {
+					label.addClass('highlight');
+				}
+			}
+
+		});
+
+		jQuery('.tab a').on('click', function (e) {
+
+			e.preventDefault();
+
+			jQuery(this).parent().addClass('active');
+			jQuery(this).parent().siblings().removeClass('active');
+
+			target = jQuery(this).attr('href');
+
+			jQuery('.tab-content > div').not(target).hide();
+
+			jQuery(target).fadeIn(600);
+
+		});
     }
-    */
+ ]);
+
 
 
 addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService', 'NgMap','$location', '$http',

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.sql.DataSource;
+import java.security.Principal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -33,13 +34,19 @@ public class LocationController {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
-    @RequestMapping(value="/",method = RequestMethod.GET)
-    public ModelAndView homepage(){
-        return new ModelAndView("redirect:/index.html");
+    @RequestMapping("/user")
+    public Principal user(Principal user) {
+        return user;
     }
+
 
     @RequestMapping(value = "toilets")
     public List<Location> getLocations() {
+        return jdbcTemplate.query("select * from locations", new LocationRowMapper());
+    }
+
+    @RequestMapping(value = "toilets2")
+    public List<Location> getLocations2() {
         return jdbcTemplate.query("select * from locations", new LocationRowMapper());
     }
 

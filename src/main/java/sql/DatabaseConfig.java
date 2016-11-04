@@ -14,7 +14,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 public class DatabaseConfig {
-
+    /*
     @Bean
     public DataSource dataSource() {
         MysqlDataSource dataSource = new MysqlDataSource();
@@ -35,5 +35,5 @@ public class DatabaseConfig {
     public PlatformTransactionManager txManager() {
         return new DataSourceTransactionManager(dataSource());
     }
-
+    */
 }
