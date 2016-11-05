@@ -33,7 +33,7 @@ public class Main {
                     .httpBasic().and()
                     .authorizeRequests()
                     .antMatchers("/toilets", "/#/login", "/index.html", "/home.html", "/partials/login.html", "/lib/**", "/",
-                            "/css", "/images", "/js", "/login", "/partials/home.html").permitAll()
+                            "/css", "/images", "/js", "/user","/login", "/partials/home.html").permitAll()
                     .anyRequest().authenticated()
                     .and()
                         .formLogin()

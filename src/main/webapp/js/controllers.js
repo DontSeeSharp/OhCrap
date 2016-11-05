@@ -154,7 +154,7 @@ addressbookControllers.controller('createAccountCtrl',['$scope','$http',
 			jQuery(this).parent().addClass('active');
 			jQuery(this).parent().siblings().removeClass('active');
 
-			target = jQuery(this).attr('href');
+			var target = jQuery(this).attr('href');
 
 			jQuery('.tab-content > div').not(target).hide();
 
