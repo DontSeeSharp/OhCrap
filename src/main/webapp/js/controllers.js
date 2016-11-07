@@ -51,7 +51,7 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 		$scope.switchToAddLocation = function() {
 			locationService.set({"lat": vm.map.getCenter().lat().toString(), "lng" : vm.map.getCenter().lng().toString(),
 			"zoom" : vm.map.getZoom()});
-			$location.path("addLocation")
+			$location.path("/addLocation")
 		};
 	}
 ]);
@@ -61,8 +61,8 @@ addressbookControllers.controller('loginCtrl', [
 	}
 ]);
 
-addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$location', '$route', '$scope',
-    function($rootScope, $http, $location, $route, $scope) {
+addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$location', '$route', '$scope', '$window',
+    function($rootScope, $http, $location, $route, $scope, $window) {
 		jQuery('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
 			var jQuerythis = jQuery(this),
@@ -143,13 +143,14 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 			console.log("pressed login!");
 			authenticate($scope.credentials, function(authenticated) {
 				if (authenticated) {
-					console.log("Login succeeded")
+					console.log("Login succeeded");
+					$window.location.reload();
 					$location.path("/");
 					$scope.error = false;
 					$rootScope.authenticated = true;
 				} else {
 					console.log("Login failed")
-					$location.path("/login");
+					$location.path("/signIn");
 					$scope.error = true;
 					$rootScope.authenticated = false;
 				}
