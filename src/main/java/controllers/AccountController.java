@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -14,8 +15,8 @@ import java.util.HashMap;
 /**
  * Created by Taavi on 30.10.2016.
  */
+@RestController
 public class AccountController {
-
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -34,7 +35,7 @@ public class AccountController {
         HashMap hashMap = new HashMap();
         hashMap.put("username", request.getUsername());
         hashMap.put("password", request.getPassword());
-       // jdbcTemplate.update("insert into locations (username, password) VALUES(:username, :password)", hashMap);
+        jdbcTemplate.update("insert into userdata (username, password) VALUES(:username, :password)", hashMap);
     }
 
 }
