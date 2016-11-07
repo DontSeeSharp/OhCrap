@@ -30,10 +30,10 @@ public class Main {
         protected void configure(HttpSecurity http) throws Exception {
             // @formatter:off
             http
-                    .httpBasic().and()
+
                     .authorizeRequests()
                     .antMatchers("/toilets", "/#/login", "/index.html", "/home.html", "/partials/login.html", "/lib/**", "/",
-                            "/css", "/images", "/js", "/user","/login", "/partials/home.html").permitAll()
+                            "/css", "/images", "/js","/user","/login", "/partials/SignIn.html", "/partials/home.html").permitAll()
                     .anyRequest().authenticated()
                     .and()
                         .formLogin()
@@ -41,7 +41,9 @@ public class Main {
                         .permitAll()
                     .and()
                     .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
-                    .csrf().csrfTokenRepository(csrfTokenRepository());
+                    .csrf().csrfTokenRepository(csrfTokenRepository())
+                    .and()
+                    .httpBasic();
             // @formatter:on
         }
     }

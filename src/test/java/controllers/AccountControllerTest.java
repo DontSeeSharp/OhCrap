@@ -22,5 +22,4 @@ public class AccountControllerTest {
     @Test
     public void testIfUserIsCreated() {
     }
-
 }
