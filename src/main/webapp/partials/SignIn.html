@@ -24,7 +24,7 @@
                         <label>
                             First Name<span class="req">*</span>
                         </label>
-                        <input type="text" required autocomplete="off" />
+                        <input type="text" required autocomplete="off"  />
                     </div>
 
                     <div class="field-wrap">
@@ -39,17 +39,17 @@
                     <label>
                         Username<span class="req">*</span>
                     </label>
-                    <input type="text"required autocomplete="off"/>
+                    <input type="text"required autocomplete="off" ng-model="username"/>
                 </div>
 
                 <div class="field-wrap">
                     <label>
                         Set A Password<span class="req">*</span>
                     </label>
-                    <input type="password"required autocomplete="off"/>
+                    <input type="password"required autocomplete="off" ng-model="password"/>
                 </div>
 
-                <button type="submit" class="button button-block">Get Started</button>
+                <button type="submit" class="button button-block" ng-click="submitAccount()">Get Started</button>
 
             </form>
 

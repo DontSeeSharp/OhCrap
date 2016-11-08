@@ -63,10 +63,14 @@ addressbookControllers.controller('loginCtrl', [
 
 addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$location', '$route', '$scope', '$window',
     function($rootScope, $http, $location, $route, $scope, $window) {
+
+
+
 		jQuery('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
 			var jQuerythis = jQuery(this),
 				label = jQuerythis.prev('label');
+
 
 			if (e.type === 'keyup') {
 				if (jQuerythis.val() === '') {
@@ -164,7 +168,27 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 			});
 		};
 		//---------------------- LOGIN PART END ----------------------
-    }
+
+		//------------------------CREATE ACC PART START---------------
+		    $scope.submitAccount = function() {
+            			$http.post('createUser',
+            				{
+            					"username": $scope.username,
+            					"password": $scope.password
+            			})
+            				.success(function(data) {
+            					console.log("user created");
+            				})
+            				.error(function(data) {
+            					console.log("error!!");
+            					console.error('error: data = ' , data);
+            				});
+            		}
+
+		 }
+
+		//------------------------CREATE ACC PART END---------------
+
  ]);
 
 
