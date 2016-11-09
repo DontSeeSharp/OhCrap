@@ -45,10 +45,6 @@ public class LocationController {
         return jdbcTemplate.query("select * from locations", new LocationRowMapper());
     }
 
-    @RequestMapping(value = "toilets2")
-    public List<Location> getLocations2() {
-        return jdbcTemplate.query("select * from locations", new LocationRowMapper());
-    }
 
     @RequestMapping(value = "addToilet", method = RequestMethod.POST)
     public void addToilet(@RequestBody SaveLocationRequest request) {
