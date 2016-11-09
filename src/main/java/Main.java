@@ -9,8 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
+//import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
@@ -23,27 +25,31 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
+
     @Configuration
     @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
     protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             // @formatter:off
             http
-
+                    .httpBasic()
+                    .and()
                     .authorizeRequests()
                     .antMatchers("/toilets", "/#/login", "/index.html", "/home.html", "/partials/login.html", "/lib/**", "/",
-                            "/css", "/images", "/js","/user","/login", "/partials/SignIn.html", "/partials/home.html").permitAll()
+                            "/css", "/images", "/createUser", "/js","/user","/login", "/partials/SignIn.html", "/partials/home.html").permitAll()
                     .anyRequest().authenticated()
                     .and()
                         .formLogin()
                         .loginPage("/partials/login.html")
                         .permitAll()
                     .and()
-                    .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
-                    .csrf().csrfTokenRepository(csrfTokenRepository())
-                    .and()
-                    .httpBasic();
+                    .csrf()
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                    //.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
+                    // .csrf().csrfTokenRepository(csrfTokenRepository())
+
             // @formatter:on
         }
     }

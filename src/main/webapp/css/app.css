@@ -608,3 +608,34 @@ div.circle.expand{
 
 /*--------------------------------- CSS FOR SIGN IN END -------------------*/
 
+/*--------------------------------- CSS FOR SIGN-BUTTON BEGIN -------------------*/
+
+.sign-in-button {
+	outline: none;
+	height: 40px;
+	text-align: center;
+	width: 130px;
+	border-radius: 40px;
+	background: #fff;
+	border: 2px solid #4a89dc;
+	color: #4a89dc;
+	letter-spacing: 1px;
+	text-shadow: 0;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+.sign-in-button:hover {
+	color: white;
+	background: #4a89dc;
+}
+.sign-in-button:active {
+	letter-spacing: 2px;
+}
+.sign-in-button:after {
+	content: "SIGN IN";
+}
+
+
+/*--------------------------------- CSS FOR SIGN BUTTON END -------------------*/

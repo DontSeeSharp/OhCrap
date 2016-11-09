@@ -4,8 +4,8 @@
 
 var addressbookControllers = angular.module('addressbookControllers', ['ngMap']);
 
-addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location', '$http',
-	function(NgMap, $scope, locationService, $location, $http) {
+addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location', '$http', '$rootScope', '$window',
+	function(NgMap, $scope, locationService, $location, $http, $rootScope, $window) {
         $scope.allBathrooms = {};
 
 	    //Code for api request
@@ -52,6 +52,14 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 			locationService.set({"lat": vm.map.getCenter().lat().toString(), "lng" : vm.map.getCenter().lng().toString(),
 			"zoom" : vm.map.getZoom()});
 			$location.path("/addLocation")
+		};
+
+		$scope.logout = function() {
+			$http.post('logout', {}).finally(function() {
+				$rootScope.authenticated = false;
+				$window.location.reload();
+				$location.path("/");
+			});
 		};
 	}
 ]);
@@ -161,12 +169,6 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 			})
 		};
 
-		$scope.logout = function() {
-			$http.post('logout', {}).finally(function() {
-				$rootScope.authenticated = false;
-				$location.path("/");
-			});
-		};
 		//---------------------- LOGIN PART END ----------------------
 
 		//------------------------CREATE ACC PART START---------------

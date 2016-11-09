@@ -20,7 +20,7 @@
     <div class="circle" ng-class="{'expand':menuVisible}"></div>
     <div class="menu" ng-class="{'animate':menuVisible}">
         <ul>
-            <li ng-class="{'animate':menuVisible}"><a href="/#/login">Sign in</a></li>
+            <li ng-class="{'animate':menuVisible}"><a ng-show="$root.authenticated" ng-click="logout()">Sign out</a></li>
             <li ng-class="{'animate':menuVisible}"><a href="">Account</a></li>
             <li ng-class="{'animate':menuVisible}" ng-click="switchToAddLocation()"><a href="">Add new location</a></li>
             <li ng-class="{'animate':menuVisible}"><a href="">Settings</a></li>
