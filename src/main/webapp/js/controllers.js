@@ -7,7 +7,7 @@ var addressbookControllers = angular.module('addressbookControllers', ['ngMap'])
 addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location', '$http', '$rootScope', '$window',
 	function(NgMap, $scope, locationService, $location, $http, $rootScope, $window) {
         $scope.allBathrooms = {};
-
+		$scope.test =
 	    //Code for api request
         $scope.getBathrooms = function() {
         			$http.get('toilets')
@@ -32,7 +32,6 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 		};
 		NgMap.getMap().then(function(map) {
 			vm.map = map;
-
 		});
 
 		//code for hamburger and menu

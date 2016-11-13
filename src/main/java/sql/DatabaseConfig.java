@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 /**
  * Created by Hendrig on 23.10.2016.
  */
-@Configuration
+//@Configuration
 public class DatabaseConfig {
     /*
     @Bean
