@@ -273,6 +273,7 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 			})
 				.success(function(data) {
 					console.log("toilet added");
+					$location.path("/");
 				})
 				.error(function(data) {
 					console.log("error!!");
@@ -313,5 +314,6 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
        };
    }).config(function ($httpProvider) {
          $httpProvider.interceptors.push('responseObserver');
+		 $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
      });
 
