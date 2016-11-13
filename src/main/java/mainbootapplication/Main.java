@@ -53,12 +53,8 @@ public class Main {
                     .and()
                     .authorizeRequests()
                     .antMatchers("/toilets", "/#/login", "/index.html", "/home.html", "/partials/login.html", "/lib/**", "/",
-                            "/css", "/images", "/createUser", "/js","/user","/login", "/partials/SignIn.html", "/partials/home.html").permitAll()
+                            "/css", "/images", "/createUser", "/js","/login", "/partials/SignIn.html", "/partials/home.html").permitAll()
                     .anyRequest().authenticated()
-                    .and()
-                        .formLogin()
-                        .loginPage("/partials/login.html")
-                        .permitAll()
                     .and()
                     .csrf()
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
