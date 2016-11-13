@@ -40,18 +40,7 @@ public class Main {
     @Configuration
     @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
     protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
         
-
-        @Autowired
-        public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-
-            auth.jdbcAuthentication().dataSource(dataSource)
-                    .usersByUsernameQuery(
-                            "select username,password, enabled from users where username=?")
-                    .authoritiesByUsernameQuery(
-                            "select username, role from user_roles where username=?");
-        }
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {
