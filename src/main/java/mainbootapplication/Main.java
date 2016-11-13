@@ -52,7 +52,7 @@ public class Main {
                     .httpBasic()
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/toilets", "/#/login", "/index.html", "/home.html", "/partials/login.html", "/lib/**", "/",
+                    .antMatchers("/toilets", "/user", "/#/login", "/index.html", "/home.html", "/partials/login.html", "/lib/**", "/",
                             "/css", "/images", "/createUser", "/js","/login", "/partials/SignIn.html", "/partials/home.html").permitAll()
                     .anyRequest().authenticated()
                     .and()

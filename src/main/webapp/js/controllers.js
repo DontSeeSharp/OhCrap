@@ -296,5 +296,22 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 			});
 		});
 	};
-}]);
+}])
+.factory('responseObserver', function responseObserver($q, $location, $window) {
+       return {
+           'responseError': function(errorResponse) {
+               switch (errorResponse.status) {
+               case 401:
+                   $window.location = "#/login";
+                   break;
+               case 500:
+                   $window.location = './500.html';
+                   break;
+               }
+               return $q.reject(errorResponse);
+           }
+       };
+   }).config(function ($httpProvider) {
+         $httpProvider.interceptors.push('responseObserver');
+     });
 
