@@ -179,6 +179,7 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
             			})
             				.success(function(data) {
             					console.log("user created");
+								alert("user created!");
             				})
             				.error(function(data) {
             					console.log("error!!");
@@ -314,6 +315,6 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
        };
    }).config(function ($httpProvider) {
          $httpProvider.interceptors.push('responseObserver');
-		 $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
      });
 

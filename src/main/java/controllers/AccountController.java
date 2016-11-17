@@ -44,7 +44,11 @@ public class AccountController {
         HashMap hashMap = new HashMap();
         hashMap.put("username", request.getUsername());
         hashMap.put("password", request.getPassword());
-        jdbcTemplate.update("insert into userdata (username, password) VALUES(:username, :password)", hashMap);
+        jdbcTemplate.update("insert into users (username, password) VALUES(:username, :password)", hashMap);
+        hashMap = new HashMap();
+        hashMap.put("username", request.getUsername());
+        hashMap.put("role", "ROLE_USER");
+        jdbcTemplate.update("insert into user_roles (username, role) VALUES(:username, :role)", hashMap);
     }
 
     private static class AccountMapper implements RowMapper<Account> {
