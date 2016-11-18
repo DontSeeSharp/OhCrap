@@ -505,8 +505,8 @@ svg rect{
 	content: ' ';
 	position: absolute;
 	top: 50%; left: 50%;
-	margin: -40px 0 0 -11px;
-	background: url('http://192.185.56.29/~ivfhawai/wp-content/uploads/2013/08/map-pin1.png');
+	margin: -64px 0 0 -12px;
+	background: url('../images/pinpoint.png');
 	background-size: 22px 40px; /* Since I used the HiDPI marker version this compensates for the 2x size */
 	pointer-events: none; /* This disables clicks on the marker. Not fully supported by all major browsers, though */
 }

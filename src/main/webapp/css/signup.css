@@ -7,22 +7,26 @@ html {
 }
 
 body {
-	background: #c1bdba;
+	background: #ffffff;
 	font-family: 'Titillium Web', sans-serif;
 }
 
 a {
 	text-decoration: none;
-	color: #1ab188;
+	color: #4a89dc;
 	transition: .5s ease;
 }
 
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px #edf3ff inset;
+}
+
 a:hover {
-	color: #179b77;
+	color: #4a89dc;
 }
 
 .form {
-	background: rgba(19, 35, 47, 0.9);
+	background: rgba(255, 255, 255, 0.9);
 	padding: 40px;
 	max-width: 600px;
 	margin: 40px auto;
@@ -57,12 +61,12 @@ a:hover {
 }
 
 .tab-group li a:hover {
-	background: #179b77;
+	background: #004C70;
 	color: #ffffff;
 }
 
 .tab-group .active a {
-	background: #1ab188;
+	background: #006495;
 	color: #ffffff;
 }
 
@@ -72,7 +76,7 @@ a:hover {
 
 h1 {
 	text-align: center;
-	color: #ffffff;
+	color: #4a89dc;
 	font-weight: 300;
 	margin: 0 0 40px;
 }
@@ -81,7 +85,7 @@ label {
 	position: absolute;
 	transform: translateY(6px);
 	left: 13px;
-	color: rgba(255, 255, 255, 0.5);
+	color: rgba(74, 137, 220, 1);
 	transition: all 0.25s ease;
 	-webkit-backface-visibility: hidden;
 	pointer-events: none;
@@ -90,7 +94,7 @@ label {
 
 label .req {
 	margin: 2px;
-	color: #1ab188;
+	color: #4a89dc;
 }
 
 label.active {
@@ -104,7 +108,7 @@ label.active .req {
 }
 
 label.highlight {
-	color: #ffffff;
+	color: #4a89dc;
 }
 
 input, textarea {
@@ -116,14 +120,14 @@ input, textarea {
 	background: none;
 	background-image: none;
 	border: 1px solid #a0b3b0;
-	color: #ffffff;
+	color: #004C70;
 	border-radius: 0;
 	transition: border-color .25s ease, box-shadow .25s ease;
 }
 
 input:focus, textarea:focus {
 	outline: 0;
-	border-color: #1ab188;
+	border-color: #004C70;
 }
 
 textarea {
@@ -161,14 +165,14 @@ textarea {
 	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: .1em;
-	background: #1ab188;
+	background: #006495;
 	color: #ffffff;
 	transition: all 0.5s ease;
 	-webkit-appearance: none;
 }
 
 .button:hover, .button:focus {
-	background: #179b77;
+	background: #004C70;
 }
 
 .button-block {
@@ -179,4 +183,8 @@ textarea {
 .forgot {
 	margin-top: -20px;
 	text-align: right;
+}
+input:focus:required:invalid:focus, textarea:focus:required:invalid:focus, select:focus:required:invalid:focus {
+	border-color: #F2635F;
+	box-shadow: 0 0 6px #F2635F;
 }

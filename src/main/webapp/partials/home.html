@@ -13,7 +13,7 @@
 
 <ng-map  zoom="18" center="[59.395896, 24.671332]" default-style="false" class="height100">
     <marker position="current" shape="circle" coords="0,0,10" animation="Animation.BOUNCE" centered="true" color="green"></marker>
-    <span ng-repeat="bathroom in allBathrooms"><marker position="[{{bathroom.latitude}}, {{bathroom.longitude}}]"></marker></span>
+    <span ng-repeat="bathroom in allBathrooms"><marker icon="{url:'../images/toilet-icon.png',scaledSize:[50,50]}" position="[{{bathroom.latitude}}, {{bathroom.longitude}}]"></marker></span>
 
 </ng-map>
 

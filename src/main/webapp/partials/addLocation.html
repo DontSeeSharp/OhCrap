@@ -1,10 +1,10 @@
-<input class="pac-input controls position" size=80 value="{{selectedAddress}}" readonly>
+<input class="pac-input controls position" size=80 ng-model="selectedAddress" readonly>
 
 <div class="backBtn" ng-click="switchToHome()"><img src="images/backbtn.png" > </div>
 
 <ng-map ng-mouseup="getAddressFromCenterLocation()" my-touchend="getAddressFromCenterLocation()"center="[{{location.lat}},{{location.lng}}]" zoom="{{location.zoom}}" default-style="false" class="height100">
-    <span ng-repeat="bathroom in allBathrooms"><marker position="[{{bathroom.latitude}}, {{bathroom.longitude}}]"></marker></span>
-    <marker position="{{currentCenterLocation.lat}},{{currentCenterLocation.lng}}"></marker>
+    <span ng-repeat="bathroom in allBathrooms"><marker icon="{url:'../images/toilet-icon.png',scaledSize:[50,50]}" position="[{{bathroom.latitude}}, {{bathroom.longitude}}]"></marker></span>
+    <marker icon="{url:'../images/x-mark.png',scaledSize:[50,50]}" position="{{currentCenterLocation.lat}},{{currentCenterLocation.lng}}"></marker>
     <div class="addLocationBtn" ng-click="addLocation()"><img src="images/addToilet.png" class="img-circle"></div>
 </ng-map>
 

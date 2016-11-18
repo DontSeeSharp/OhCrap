@@ -4,8 +4,225 @@
 
 var addressbookControllers = angular.module('addressbookControllers', ['ngMap']);
 
+
+
 addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location', '$http', '$rootScope', '$window',
 	function(NgMap, $scope, locationService, $location, $http, $rootScope, $window) {
+		$rootScope.mapStyleArray = [
+			{
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#ebe3cd"
+					}
+				]
+			},
+			{
+				"elementType": "labels.text.fill",
+				"stylers": [
+					{
+						"color": "#523735"
+					}
+				]
+			},
+			{
+				"elementType": "labels.text.stroke",
+				"stylers": [
+					{
+						"color": "#f5f1e6"
+					}
+				]
+			},
+			{
+				"featureType": "administrative",
+				"elementType": "geometry.stroke",
+				"stylers": [
+					{
+						"color": "#c9b2a6"
+					}
+				]
+			},
+			{
+				"featureType": "administrative.land_parcel",
+				"elementType": "geometry.stroke",
+				"stylers": [
+					{
+						"color": "#dcd2be"
+					}
+				]
+			},
+			{
+				"featureType": "administrative.land_parcel",
+				"elementType": "labels.text.fill",
+				"stylers": [
+					{
+						"color": "#ae9e90"
+					}
+				]
+			},
+			{
+				"featureType": "landscape.natural",
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#dfd2ae"
+					}
+				]
+			},
+			{
+				"featureType": "poi",
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#dfd2ae"
+					}
+				]
+			},
+			{
+				"featureType": "poi",
+				"elementType": "labels.text.fill",
+				"stylers": [
+					{
+						"color": "#93817c"
+					}
+				]
+			},
+			{
+				"featureType": "poi.park",
+				"elementType": "geometry.fill",
+				"stylers": [
+					{
+						"color": "#a5b076"
+					}
+				]
+			},
+			{
+				"featureType": "poi.park",
+				"elementType": "labels.text.fill",
+				"stylers": [
+					{
+						"color": "#447530"
+					}
+				]
+			},
+			{
+				"featureType": "road",
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#f5f1e6"
+					}
+				]
+			},
+			{
+				"featureType": "road.arterial",
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#fdfcf8"
+					}
+				]
+			},
+			{
+				"featureType": "road.highway",
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#f8c967"
+					}
+				]
+			},
+			{
+				"featureType": "road.highway",
+				"elementType": "geometry.stroke",
+				"stylers": [
+					{
+						"color": "#e9bc62"
+					}
+				]
+			},
+			{
+				"featureType": "road.highway.controlled_access",
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#e98d58"
+					}
+				]
+			},
+			{
+				"featureType": "road.highway.controlled_access",
+				"elementType": "geometry.stroke",
+				"stylers": [
+					{
+						"color": "#db8555"
+					}
+				]
+			},
+			{
+				"featureType": "road.local",
+				"elementType": "labels.text.fill",
+				"stylers": [
+					{
+						"color": "#806b63"
+					}
+				]
+			},
+			{
+				"featureType": "transit.line",
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#dfd2ae"
+					}
+				]
+			},
+			{
+				"featureType": "transit.line",
+				"elementType": "labels.text.fill",
+				"stylers": [
+					{
+						"color": "#8f7d77"
+					}
+				]
+			},
+			{
+				"featureType": "transit.line",
+				"elementType": "labels.text.stroke",
+				"stylers": [
+					{
+						"color": "#ebe3cd"
+					}
+				]
+			},
+			{
+				"featureType": "transit.station",
+				"elementType": "geometry",
+				"stylers": [
+					{
+						"color": "#dfd2ae"
+					}
+				]
+			},
+			{
+				"featureType": "water",
+				"elementType": "geometry.fill",
+				"stylers": [
+					{
+						"color": "#b9d3c2"
+					}
+				]
+			},
+			{
+				"featureType": "water",
+				"elementType": "labels.text.fill",
+				"stylers": [
+					{
+						"color": "#92998d"
+					}
+				]
+			}
+		];
         $scope.allBathrooms = {};
 		$scope.test =
 	    //Code for api request
@@ -73,12 +290,14 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 
 
 
-		jQuery('.form').find('input, textarea').on('keyup blur focus', function (e) {
+		jQuery('.form').find('input, textarea').on('keyup change blur focus', function (e) {
 
 			var jQuerythis = jQuery(this),
 				label = jQuerythis.prev('label');
 
-
+			if (e.type === 'change') {
+				e.type = 'keyup';
+			}
 			if (e.type === 'keyup') {
 				if (jQuerythis.val() === '') {
 					label.removeClass('active highlight');
@@ -160,8 +379,7 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 					$scope.error = false;
 					$rootScope.authenticated = true;
 				} else {
-					console.log("Login failed")
-					$location.path("/signIn");
+					console.log("Login failed");
 					$scope.error = true;
 					$rootScope.authenticated = false;
 				}
@@ -217,6 +435,7 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 
 		//Code for google maps api
 		var vm = this;
+		var geocoder = new google.maps.Geocoder();
 		vm.types = "['establishment']";
 		vm.placeChanged = function() {
 			vm.place = this.getPlace();
@@ -253,16 +472,29 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 
 		$scope.currentCenterLocation = {"lat": $scope.location.lat, "lng" : $scope.location.lng};
 
-		$scope.selectedAddress = "No addresses selected";
+		$scope.selectedAddress = "No addresses selectedd";
 
         $scope.getAddressFromCenterLocation = function() {
-            $scope.currentCenterLocation = {"lat": vm.map.getCenter().lat().toString(), "lng" : vm.map.getCenter().lng().toString()};
-            console.log($scope.currentCenterLocation.lat);
-			console.log($scope.currentCenterLocation.lng);
-            $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+ $scope.currentCenterLocation.lat
-                + ',' + $scope.currentCenterLocation.lng + '&key=AIzaSyDrXw9BwblAbmcwuljHC-4hhzDvyiW3xsE').then(function(response) {
-                $scope.selectedAddress = response.data.results[0].formatted_address;
-            });
+			$scope.currentCenterLocation.lat = vm.map.getCenter().lat().toString();
+			$scope.currentCenterLocation.lng = vm.map.getCenter().lng().toString();
+			var latlng = {lat: vm.map.getCenter().lat(), lng: vm.map.getCenter().lng()};
+			geocoder.geocode({'location': latlng}, function(results, status) {
+				if (status === 'OK') {
+					if (results[0]) {
+						$scope.$apply(function () {
+							$scope.currentCenterLocation.lat = vm.map.getCenter().lat().toString();
+							$scope.currentCenterLocation.lng = vm.map.getCenter().lng().toString();
+							$scope.selectedAddress = results[0].formatted_address;
+							console.log($scope.selectedAddress);
+						});
+
+					} else {
+						window.alert('No results found');
+					}
+				} else {
+					window.alert('Geocoder failed due to: ' + status);
+				}
+			});
         };
 
         $scope.addLocation = function() {

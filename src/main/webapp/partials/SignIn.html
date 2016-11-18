@@ -16,9 +16,6 @@
     <div class="tab-content">
         <div id="signup">
             <h1>Sign Up for Free</h1>
-
-
-
                 <div class="top-row">
                     <div class="field-wrap">
                         <label>
@@ -39,6 +36,8 @@
                     <label>
                         Username<span class="req">*</span>
                     </label>
+                    <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+                    <input style="display:none" type="text" name="fakeusernameremembered"/>
                     <input type="text"required autocomplete="off" ng-model="username"/>
                 </div>
 
@@ -46,12 +45,12 @@
                     <label>
                         Set A Password<span class="req">*</span>
                     </label>
+                    <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+                    <input style="display:none" type="password" name="fakepasswordremembered"/>
                     <input type="password"required autocomplete="off" ng-model="password"/>
                 </div>
 
                 <button type="submit" class="button button-block" ng-click="submitAccount()">Get Started</button>
-
-
         </div>
 
         <div id="login">
@@ -59,20 +58,20 @@
             <div class="alert alert-danger" ng-show="error">
                 There was a problem logging in. Please try again.
             </div>
-            <form role="form" ng-submit="login()">
+            <form role="form" ng-submit="login()" autocomplete="off">
 
                 <div class="field-wrap">
                     <label>
                         Username<span class="req">*</span>
                     </label>
-                    <input type="text" id="username" name="username" ng-model="credentials.username"/>
+                    <input type="text" id="username" name="username" ng-model="credentials.username" autocomplete="off"/>
                 </div>
 
                 <div class="field-wrap">
                     <label>
                         Password<span class="req">*</span>
                     </label>
-                    <input type="password"required autocomplete="off" id="password" name="password" ng-model="credentials.password"/>
+                    <input type="password"required autocomplete="off" id="password" name="password" ng-model="credentials.password" autocomplete="off"/>
                 </div>
 
                 <p class="forgot"><a href="#">Forgot Password?</a></p>
