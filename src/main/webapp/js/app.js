@@ -39,6 +39,9 @@ addressbookApp.config(['$routeProvider', '$httpProvider',
         }).when('/login', {
             templateUrl: 'partials/login.html',
             controller: 'loginCtrl'
+        }).when('/rate', {
+                templateUrl: 'partials/rate.html',
+                controller: 'rateCtrl'
         }).when('/signIn', {
             	templateUrl: 'partials/SignIn.html',
             	controller: 'createAccountCtrl'
