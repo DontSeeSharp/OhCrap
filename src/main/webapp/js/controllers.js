@@ -414,7 +414,7 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 addressbookControllers.controller('rateCtrl', ['$scope', 'locationService', 'NgMap','$location', '$http',
 	function($scope, locationService, NgMap, $location, $http) {
 
-	}])
+	}]);
 
 
 
