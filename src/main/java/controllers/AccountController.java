@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
+import java.security.Principal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -33,6 +34,12 @@ public class AccountController {
         dataSource.setPortNumber(3306);
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
+
+    @RequestMapping("/user")
+    public Principal user(Principal user) {
+        return user;
+    }
+
 
     @RequestMapping(value = "getUsers")
     public List<Account> getUsers() {

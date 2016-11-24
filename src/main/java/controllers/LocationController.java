@@ -35,10 +35,6 @@ public class LocationController {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
-    @RequestMapping("/user")
-    public Principal user(Principal user) {
-        return user;
-    }
 
 
     @RequestMapping(value = "toilets")
