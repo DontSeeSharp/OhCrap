@@ -67,10 +67,10 @@ public class Main {
         @Autowired
         public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
             MysqlDataSource dataSource = new MysqlDataSource();
-            dataSource.setUser("admin");
-            dataSource.setPassword("admin");
-            dataSource.setDatabaseName("toilet_locations");
-            dataSource.setServerName("localhost");
+            dataSource.setUser("dontsees_guest");
+            dataSource.setPassword("1Forgot1t");
+            dataSource.setDatabaseName("dontsees_ohcrap");
+            dataSource.setServerName("ns8527.hostgator.com");
             dataSource.setPortNumber(3306);
             auth.jdbcAuthentication().dataSource(dataSource)
                     .usersByUsernameQuery(
