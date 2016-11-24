@@ -10,6 +10,7 @@ public class Location {
     private String address;
     private double latitude;
     private double longitude;
+    private String adder;
 
     public String getName() {
         return name;
@@ -49,5 +50,13 @@ public class Location {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getAdder() {
+        return adder;
+    }
+
+    public void setAdder(String adder) {
+        this.adder = adder;
     }
 }

@@ -8,228 +8,16 @@ var addressbookControllers = angular.module('addressbookControllers', ['ngMap'])
 
 addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location', '$http', '$rootScope', '$window',
 	function(NgMap, $scope, locationService, $location, $http, $rootScope, $window) {
-		$rootScope.mapStyleArray = [
-			{
-				"elementType": "geometry",
-				"stylers": [
-					{
-						"color": "#ebe3cd"
-					}
-				]
-			},
-			{
-				"elementType": "labels.text.fill",
-				"stylers": [
-					{
-						"color": "#523735"
-					}
-				]
-			},
-			{
-				"elementType": "labels.text.stroke",
-				"stylers": [
-					{
-						"color": "#f5f1e6"
-					}
-				]
-			},
-			{
-				"featureType": "administrative",
-				"elementType": "geometry.stroke",
-				"stylers": [
-					{
-						"color": "#c9b2a6"
-					}
-				]
-			},
-			{
-				"featureType": "administrative.land_parcel",
-				"elementType": "geometry.stroke",
-				"stylers": [
-					{
-						"color": "#dcd2be"
-					}
-				]
-			},
-			{
-				"featureType": "administrative.land_parcel",
-				"elementType": "labels.text.fill",
-				"stylers": [
-					{
-						"color": "#ae9e90"
-					}
-				]
-			},
-			{
-				"featureType": "landscape.natural",
-				"elementType": "geometry",
-				"stylers": [
-					{
-						"color": "#dfd2ae"
-					}
-				]
-			},
-			{
-				"featureType": "poi",
-				"elementType": "geometry",
-				"stylers": [
-					{
-						"color": "#dfd2ae"
-					}
-				]
-			},
-			{
-				"featureType": "poi",
-				"elementType": "labels.text.fill",
-				"stylers": [
-					{
-						"color": "#93817c"
-					}
-				]
-			},
-			{
-				"featureType": "poi.park",
-				"elementType": "geometry.fill",
-				"stylers": [
-					{
-						"color": "#a5b076"
-					}
-				]
-			},
-			{
-				"featureType": "poi.park",
-				"elementType": "labels.text.fill",
-				"stylers": [
-					{
-						"color": "#447530"
-					}
-				]
-			},
-			{
-				"featureType": "road",
-				"elementType": "geometry",
-				"stylers": [
-					{
-						"color": "#f5f1e6"
-					}
-				]
-			},
-			{
-				"featureType": "road.arterial",
-				"elementType": "geometry",
-				"stylers": [
-					{
-						"color": "#fdfcf8"
-					}
-				]
-			},
-			{
-				"featureType": "road.highway",
-				"elementType": "geometry",
-				"stylers": [
-					{
-						"color": "#f8c967"
-					}
-				]
-			},
-			{
-				"featureType": "road.highway",
-				"elementType": "geometry.stroke",
-				"stylers": [
-					{
-						"color": "#e9bc62"
-					}
-				]
-			},
-			{
-				"featureType": "road.highway.controlled_access",
-				"elementType": "geometry",
-				"stylers": [
-					{
-						"color": "#e98d58"
-					}
-				]
-			},
-			{
-				"featureType": "road.highway.controlled_access",
-				"elementType": "geometry.stroke",
-				"stylers": [
-					{
-						"color": "#db8555"
-					}
-				]
-			},
-			{
-				"featureType": "road.local",
-				"elementType": "labels.text.fill",
-				"stylers": [
-					{
-						"color": "#806b63"
-					}
-				]
-			},
-			{
-				"featureType": "transit.line",
-				"elementType": "geometry",
-				"stylers": [
-					{
-						"color": "#dfd2ae"
-					}
-				]
-			},
-			{
-				"featureType": "transit.line",
-				"elementType": "labels.text.fill",
-				"stylers": [
-					{
-						"color": "#8f7d77"
-					}
-				]
-			},
-			{
-				"featureType": "transit.line",
-				"elementType": "labels.text.stroke",
-				"stylers": [
-					{
-						"color": "#ebe3cd"
-					}
-				]
-			},
-			{
-				"featureType": "transit.station",
-				"elementType": "geometry",
-				"stylers": [
-					{
-						"color": "#dfd2ae"
-					}
-				]
-			},
-			{
-				"featureType": "water",
-				"elementType": "geometry.fill",
-				"stylers": [
-					{
-						"color": "#b9d3c2"
-					}
-				]
-			},
-			{
-				"featureType": "water",
-				"elementType": "labels.text.fill",
-				"stylers": [
-					{
-						"color": "#92998d"
-					}
-				]
-			}
-		];
+		$scope.userAuthenticated = "bbbb";
+		$rootScope.$watch($rootScope.authenticated, function () {
+			$scope.userAuthenticated = $rootScope.authenticated;
+		});
         $scope.allBathrooms = {};
 		$scope.test =
 	    //Code for api request
         $scope.getBathrooms = function() {
         			$http.get('toilets')
         			.success(function(data) {
-        				console.log('data = ' , data[0].address);
         				$scope.allBathrooms = data;
 						console.log($scope.allBathrooms);
         			})
@@ -273,6 +61,8 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 		$scope.logout = function() {
 			$http.post('logout', {}).finally(function() {
 				$rootScope.authenticated = false;
+				$scope.userAuthenticated = false;
+				$scope.$apply();
 				$window.location.reload();
 				$location.path("/");
 			});
@@ -341,7 +131,8 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 		$scope.tab = function(route) {
 			return $route.current && route === $route.current.controller;
 		};
-
+		$rootScope.authenticated = false;
+		$scope.userAuthenticated = "babaa";
 		var authenticate = function(credentials, callback) {
 
 			var headers = credentials ? {
@@ -355,12 +146,15 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 			}).then(function(response) {
 				if (response.data.name) {
 					$rootScope.authenticated = true;
+					$scope.userAuthenticated = true;
 				} else {
 					$rootScope.authenticated = false;
+					$scope.userAuthenticated = false;
 				}
 				callback && callback($rootScope.authenticated);
 			}, function() {
 				$rootScope.authenticated = false;
+				$scope.userAuthenticated = false;
 				callback && callback(false);
 			});
 
@@ -378,10 +172,12 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 					$location.path("/");
 					$scope.error = false;
 					$rootScope.authenticated = true;
+					$scope.userAuthenticated = true;
 				} else {
 					console.log("Login failed");
 					$scope.error = true;
 					$rootScope.authenticated = false;
+					$scope.userAuthenticated = false;
 				}
 			})
 		};
@@ -427,7 +223,6 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 		$scope.getBathrooms = function() {
 			$http.get('toilets')
 				.success(function(data) {
-					console.log('data = ' , data[0].address);
 					$scope.allBathrooms = data;
 					console.log($scope.allBathrooms);
 				})
@@ -502,18 +297,37 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 			});
         };
 
+		$scope.textAlert = "Some content";
+		$scope.showSuccessAlert = true;
+		$scope.showFailAlert = true;
+		// switch flag
+		$scope.switchSuccess = function() {
+			$scope.showSuccessAlert = !$scope.showSuccessAlert;
+		};
+		$scope.switchFail = function() {
+			$scope.showFailAlert = !$scope.showFailAlert;
+		};
+
         $scope.addLocation = function() {
+			showLoading();
 			$http.post('addToilet',
 				{
 					"lat": $scope.currentCenterLocation.lat,
 					"lng": $scope.currentCenterLocation.lng,
 					"address": $scope.selectedAddress
 			})
-				.success(function(data) {
-					console.log("toilet added");
-					$location.path("/");
+				.success(function(response) {
+					showPage();
+					if (response.result == "Location successfully added to database!") {
+						$scope.successTextAlert = response.result;
+						$scope.switchSuccess();
+					} else {
+						$scope.textAlert = response.result;
+						$scope.switchFail()
+					}
 				})
 				.error(function(data) {
+					showPage();
 					console.log("error!!");
 					console.error('error: data = ' , data);
 				});

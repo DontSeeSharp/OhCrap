@@ -6,6 +6,8 @@ import dto.save.SaveLocationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,8 +15,7 @@ import javax.sql.DataSource;
 import java.security.Principal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Taavi on 10.10.2016.
@@ -41,18 +42,67 @@ public class LocationController {
 
 
     @RequestMapping(value = "toilets")
+    public List<Location> getUniqueLocations() {
+        return filterUniqueLocations(getLocations());
+    }
+
+
+    @RequestMapping(value = "addToilet", method = RequestMethod.POST, produces = "application/json")
+    public Map addToilet(@RequestBody SaveLocationRequest request) {
+        String adder = getLoggedInUsername();
+        boolean hasAddedThisLocation = checkIfUserHasAddedThisLocation(getLocations(), request.getAddress(), adder);
+        if (hasAddedThisLocation) {
+            return Collections.singletonMap("result", "You can't enter same location twice!");
+        } else {
+            HashMap hashMap = new HashMap();
+            hashMap.put("address", request.getAddress());
+            hashMap.put("lat", request.getLat());
+            hashMap.put("lng", request.getLng());
+            hashMap.put("adder", adder);
+            jdbcTemplate.update("insert into locations (address, adder, lat, lng) VALUES(:address, :adder, :lat, :lng)", hashMap);
+            return Collections.singletonMap("result", "Location successfully added to database!");
+        }
+    }
+
     public List<Location> getLocations() {
         return jdbcTemplate.query("select * from locations", new LocationRowMapper());
     }
 
+    private String getLoggedInUsername() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getName(); //get logged in username
 
-    @RequestMapping(value = "addToilet", method = RequestMethod.POST)
-    public void addToilet(@RequestBody SaveLocationRequest request) {
-        HashMap hashMap = new HashMap();
-        hashMap.put("address", request.getAddress());
-        hashMap.put("lat", request.getLat());
-        hashMap.put("lng", request.getLng());
-        jdbcTemplate.update("insert into locations (address, lat, lng) VALUES(:address, :lat, :lng)", hashMap);
+    }
+
+    private boolean checkIfUserHasAddedThisLocation(List<Location> locationList, String address, String username) {
+        if (!locationList.isEmpty()) {
+            for (Location location : locationList) {
+                if (location.getAdder().equals(username) && location.getAddress().equals(address)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private List<Location> filterUniqueLocations(List<Location> locationList) {
+        List<Location> uniqueLocations = new ArrayList<Location>();
+        List<String> uniqueAddressList = new ArrayList<String>();
+        List<String> addressList = new ArrayList<String>();
+
+        for (Location location : locationList) {
+            addressList.add(location.getAddress());
+        }
+
+        for (Location location : locationList) {
+            if (!uniqueAddressList.contains(location.getAddress())) {
+                if (Collections.frequency(addressList, location.getAddress()) >= 5) {
+                    uniqueLocations.add(location);
+                    uniqueAddressList.add(location.getAddress());
+                }
+            }
+        }
+        return uniqueLocations;
     }
 
     private static class LocationRowMapper implements RowMapper<Location> {
@@ -62,6 +112,7 @@ public class LocationController {
             location.setLatitude(res.getDouble("lat"));
             location.setLongitude(res.getDouble("lng"));
             location.setAddress(res.getString("address"));
+            location.setAdder(res.getString("adder"));
             return location;
         }
     }

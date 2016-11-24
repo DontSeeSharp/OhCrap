@@ -20,3 +20,13 @@ onReady(function () {
     show('page', true);
     show('loading', false);
 });
+
+function showPage() {
+    show('page', true);
+    show('loading', false);
+}
+
+function showLoading() {
+    show('page', false);
+    show('loading', true);
+}

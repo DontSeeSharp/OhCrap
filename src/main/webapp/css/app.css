@@ -510,6 +510,28 @@ svg rect{
 	background-size: 22px 40px; /* Since I used the HiDPI marker version this compensates for the 2x size */
 	pointer-events: none; /* This disables clicks on the marker. Not fully supported by all major browsers, though */
 }
+
+.add-location-alert-success {
+	position: absolute;
+	color: #468847;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+	top: 50%;
+	left: 25%;
+	width: 50%;
+	z-index: 99;
+}
+
+.add-location-alert-danger {
+	position: absolute;
+	color: #b94a48;
+	background-color: #f2dede;
+	border-color: #eed3d7;
+	top: 50%;
+	left: 25%;
+	width: 50%;
+	z-index: 99;
+}
 /*------------------------- CSS FOR ADD LOCATION END ----------------------------*/
 /*------------------------- CSS FOR MENU BEGIN ---------------------------*/
 
