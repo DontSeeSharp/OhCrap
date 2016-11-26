@@ -209,6 +209,9 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 
 addressbookControllers.controller('rateCtrl', ['$scope', 'locationService', 'NgMap','$location', '$http',
 	function($scope, locationService, NgMap, $location, $http) {
+    		$scope.switchToAddLocationTwo = function() {
+    			$location.path("/addLocation")
+    		};
 
 	}]);
 
@@ -269,6 +272,9 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 		$scope.switchToHome = function() {
         			$location.path("home")
         		};
+        $scope.switchToRate = function() {
+                    $location.path("rate")
+                };
 
 		$scope.currentCenterLocation = {"lat": $scope.location.lat, "lng" : $scope.location.lng};
 
@@ -331,6 +337,8 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 					console.log("error!!");
 					console.error('error: data = ' , data);
 				});
+				$scope.switchToRate()
+
 		}
 
 }]).directive('myTouchstart', [function() {
