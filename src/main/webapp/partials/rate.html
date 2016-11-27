@@ -29,9 +29,9 @@
 <h2> Free </h2>
 <div>
     <form class="input-center">
-        <input type="radio" name="free" value="yes" checked> Yes<br>
-        <input type="radio" name="free" value="no"> No<br>
+        <input ng-model="result" ng-value="'Yes'" type="radio"  name="free" checked> Yes<br>
+        <input ng-model="result" type="radio" name="free" ng-value="'No'"> No<br>
     </form>
-    <button class="button" ng-click="switchToAddLocationTwo()">Submit!</button>
+    <button class="button" ng-click="submitRatingInfo()">Submit!</button>
 </div>
 </body>
