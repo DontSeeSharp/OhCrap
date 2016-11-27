@@ -211,27 +211,13 @@ addressbookControllers.controller('rateCtrl', ['$scope', 'locationService', 'NgM
 	function($scope, locationService, NgMap, $location, $http) {
 
 	$scope.submitRatingInfo = function() {
-	    if($scope.result === undefined) {
+	    if($scope.cost === undefined || $scope.rating === undefined ) {
 	    console.log("Please tick an answer")
 	    return
 	    }
-	    console.log($scope.result);
-	/**
-                			$http.post('createUser',
-                				{
-                					"username": $scope.username,
-                					"password": $scope.password
-                			})
-                				.success(function(data) {
-                					console.log("user created");
-    								alert("user created!");
-                				})
-                				.error(function(data) {
-                					console.log("error!!");
-                					console.error('error: data = ' , data);
-                				});
-                				*/
-                		}
+	    console.log($scope.cost);
+	    console.log($scope.rating);
+
 
 
 
