@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-var addressbookControllers = angular.module('addressbookControllers', ['ngMap']);
+var addressbookControllers = angular.module('addressbookControllers', ['ngMap', 'ui.bootstrap']);
 
 
 
@@ -207,27 +207,25 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 
  ]);
 
-addressbookControllers.controller('rateCtrl', ['$scope', 'locationService', 'NgMap','$location', '$http',
-	function($scope, locationService, NgMap, $location, $http) {
-
+addressbookControllers.controller('rateCtrl', ['$scope', '$modalInstance', 'NgMap','$location', '$http',
+	function($scope, $modalInstance, NgMap, $location, $http) {
+	$scope.data = {};
 	$scope.submitRatingInfo = function() {
-	    if($scope.cost === undefined || $scope.rating === undefined ) {
-	    console.log("Please tick an answer")
+	    if($scope.data.cost == undefined || $scope.data.rating == undefined) {
+	    alert("Please select both boxes!")
 	    return
 	    }
-	    console.log($scope.cost);
-	    console.log($scope.rating);
+        $modalInstance.close($scope.data);
 
-
-
-
+        }
 	}]);
 
 
 
-addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService', 'NgMap','$location', '$http',
-	function($scope, locationService, NgMap, $location, $http) {
-
+addressbookControllers.controller('addLocationCtrl', ['$scope', '$modal', 'locationService', 'NgMap','$location', '$http',
+	function($scope, $modal, locationService, NgMap, $location, $http) {
+        var rating = 0;
+        var cost = ""
 		$scope.allBathrooms = {};
 
 		//Code for api request
@@ -243,6 +241,20 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 				});
 		};
 		$scope.getBathrooms();
+	     $scope.clickMeModal = function(){
+              var modalInstance = $modal.open({
+        				templateUrl: 'partials/rate.html',
+        				controller : 'rateCtrl',
+        			});
+        				modalInstance.result.then(function(data) {
+        				console.log("Siit tuleb data");
+        				cost = data.cost;
+        				rating = data.rating;
+        				console.log(cost);
+        				console.log(rating);
+
+            			});
+              };
 
 		//Code for google maps api
 		var vm = this;
@@ -322,6 +334,7 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 
         $scope.addLocation = function() {
 			showLoading();
+			$scope.clickMeModal();
 			$http.post('addToilet',
 				{
 					"lat": $scope.currentCenterLocation.lat,
@@ -343,6 +356,7 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', 'locationService
 					console.log("error!!");
 					console.error('error: data = ' , data);
 				});
+
 		}
 
 }]).directive('myTouchstart', [function() {
