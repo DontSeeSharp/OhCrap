@@ -8,6 +8,8 @@ public class SaveLocationRequest {
     private String address;
     private double lat;
     private double lng;
+    private int rating;
+    private String free;
 
 
     public String getAddress() {
@@ -32,5 +34,22 @@ public class SaveLocationRequest {
 
     public void setLng(double lng) {
         this.lng = lng;
+    }
+
+    public String getFree() {
+        return free;
+    }
+
+
+    public void setFree(String free) {
+        this.free = free;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }

@@ -54,8 +54,11 @@ public class LocationController {
             hashMap.put("address", request.getAddress());
             hashMap.put("lat", request.getLat());
             hashMap.put("lng", request.getLng());
+            hashMap.put("free", request.getFree());
+            hashMap.put("rating", request.getRating());
             hashMap.put("adder", adder);
-            jdbcTemplate.update("insert into locations (address, adder, lat, lng) VALUES(:address, :adder, :lat, :lng)", hashMap);
+            jdbcTemplate.update("insert into locations (address, adder, lat, lng, free, rating) " +
+                    "VALUES(:address, :adder, :lat, :lng, :free, :rating)", hashMap);
             return Collections.singletonMap("result", "Location successfully added to database!");
         }
     }
@@ -108,6 +111,8 @@ public class LocationController {
             location.setLatitude(res.getDouble("lat"));
             location.setLongitude(res.getDouble("lng"));
             location.setAddress(res.getString("address"));
+            location.setFree(res.getString("free"));
+            location.setRating(res.getInt("rating"));
             location.setAdder(res.getString("adder"));
             return location;
         }

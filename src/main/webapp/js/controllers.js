@@ -224,8 +224,8 @@ addressbookControllers.controller('rateCtrl', ['$scope', '$modalInstance', 'NgMa
 
 addressbookControllers.controller('addLocationCtrl', ['$scope', '$modal', 'locationService', 'NgMap','$location', '$http',
 	function($scope, $modal, locationService, NgMap, $location, $http) {
-        var rating = 0;
-        var cost = ""
+        $scope.rating;
+        $scope.cost;
 		$scope.allBathrooms = {};
 
 		//Code for api request
@@ -241,17 +241,17 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', '$modal', 'locat
 				});
 		};
 		$scope.getBathrooms();
-	     $scope.clickMeModal = function(){
+
+	    $scope.clickMeModal = function(){
               var modalInstance = $modal.open({
         				templateUrl: 'partials/rate.html',
         				controller : 'rateCtrl',
         			});
         				modalInstance.result.then(function(data) {
         				console.log("Siit tuleb data");
-        				cost = data.cost;
-        				rating = data.rating;
-        				console.log(cost);
-        				console.log(rating);
+
+        				$scope.cost = data.cost;
+        				$scope.rating = data.rating;
 
             			});
               };
@@ -333,13 +333,16 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', '$modal', 'locat
 		};
 
         $scope.addLocation = function() {
+            console.log($scope.cost);
+            $scope.clickMeModal();
 			showLoading();
-			$scope.clickMeModal();
 			$http.post('addToilet',
 				{
 					"lat": $scope.currentCenterLocation.lat,
 					"lng": $scope.currentCenterLocation.lng,
-					"address": $scope.selectedAddress
+					"address": $scope.selectedAddress,
+					"free": $scope.cost,
+					"rating": $scope.rating
 			})
 				.success(function(response) {
 					showPage();
@@ -356,6 +359,7 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', '$modal', 'locat
 					console.log("error!!");
 					console.error('error: data = ' , data);
 				});
+
 
 		}
 

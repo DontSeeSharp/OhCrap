@@ -11,6 +11,8 @@ public class Location {
     private double latitude;
     private double longitude;
     private String adder;
+    private int rating;
+    private String free;
 
     public String getName() {
         return name;
@@ -58,5 +60,21 @@ public class Location {
 
     public void setAdder(String adder) {
         this.adder = adder;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public String getFree() {
+        return free;
+    }
+
+    public void setFree(String free) {
+        this.free = free;
     }
 }
