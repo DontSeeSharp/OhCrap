@@ -243,17 +243,11 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', '$modal', 'locat
 		$scope.getBathrooms();
 
 	    $scope.clickMeModal = function(){
-              var modalInstance = $modal.open({
+              return $modal.open({
         				templateUrl: 'partials/rate.html',
         				controller : 'rateCtrl',
         			});
-        				modalInstance.result.then(function(data) {
-        				console.log("Siit tuleb data");
 
-        				$scope.cost = data.cost;
-        				$scope.rating = data.rating;
-
-            			});
               };
 
 		//Code for google maps api
@@ -334,31 +328,41 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', '$modal', 'locat
 
         $scope.addLocation = function() {
             console.log($scope.cost);
-            $scope.clickMeModal();
-			showLoading();
-			$http.post('addToilet',
-				{
-					"lat": $scope.currentCenterLocation.lat,
-					"lng": $scope.currentCenterLocation.lng,
-					"address": $scope.selectedAddress,
-					"free": $scope.cost,
-					"rating": $scope.rating
-			})
-				.success(function(response) {
-					showPage();
-					if (response.result == "Location successfully added to database!") {
-						$scope.successTextAlert = response.result;
-						$scope.switchSuccess();
-					} else {
-						$scope.textAlert = response.result;
-						$scope.switchFail()
-					}
-				})
-				.error(function(data) {
-					showPage();
-					console.log("error!!");
-					console.error('error: data = ' , data);
-				});
+            var modalInstance = $scope.clickMeModal();
+            modalInstance.result.then(function(data) {
+                showLoading();
+                console.log("Siit tuleb data");
+
+                $scope.cost = data.cost;
+                $scope.rating = data.rating;
+
+
+                $http.post('addToilet',
+                    {
+                        "lat": $scope.currentCenterLocation.lat,
+                        "lng": $scope.currentCenterLocation.lng,
+                        "address": $scope.selectedAddress,
+                        "free": $scope.cost,
+                        "rating": $scope.rating
+                })
+                    .success(function(response) {
+                        showPage();
+                        if (response.result == "Location successfully added to database!") {
+                            $scope.successTextAlert = response.result;
+                            $scope.switchSuccess();
+                        } else {
+                            $scope.textAlert = response.result;
+                            $scope.switchFail()
+                        }
+                    })
+                    .error(function(data) {
+                        showPage();
+                        console.log("error!!");
+                        console.error('error: data = ' , data);
+                    });
+
+            });
+
 
 
 		}
