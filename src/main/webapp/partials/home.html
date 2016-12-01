@@ -1,4 +1,3 @@
-<p style="position:absolute;top:0px;left:50%;z-index:9999;background:white">{{vm.userAuthenticated}} and aaa</p>
 <input class="pac-input controls position" places-auto-complete size=80
        ng-model="vm.address"
        component-restrictions="{country:'est'}"
@@ -21,12 +20,12 @@
     <div class="circle" ng-class="{'expand':menuVisible}"></div>
     <div class="menu" ng-class="{'animate':menuVisible}">
         <ul>
-            <li ng-class="{'animate':menuVisible}"><a ng-click="logout()" ng-hide="!userAuthenticated">Sign out</a></li>
+            <li ng-class="{'animate':menuVisible}" ng-if="!userAuthenticated" ng-click="signIn()"><a href="">Sign in</a></li>
+            <li ng-class="{'animate':menuVisible}" ng-if="userAuthenticated" ng-click="logout()"><a href="">Sign out</a></li>
             <li ng-class="{'animate':menuVisible}"><a href="">Account</a></li>
             <li ng-class="{'animate':menuVisible}" ng-click="switchToAddLocation()"><a href="">Add new location</a></li>
             <li ng-class="{'animate':menuVisible}"><a href="">Settings</a></li>
             <li ng-class="{'animate':menuVisible}"><a href="">Activity</a></li>
-            <li ng-class="{'animate':menuVisible}"><a href="">Contact</a></li>
         </ul>
     </div>
 

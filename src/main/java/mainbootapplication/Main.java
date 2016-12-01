@@ -25,17 +25,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Main.class, args);
-        Class<?> c = org.slf4j.spi.LocationAwareLogger.class;
-        String path = c.getResource(c.getSimpleName() + ".class").getPath().replace(c.getSimpleName() + ".class", "");
-        System.out.println("locationawarelogger: " + path);
-
-        c = org.apache.commons.logging.impl.SLF4JLocationAwareLog.class;
-        path = c.getResource(c.getSimpleName() + ".class").getPath().replace(c.getSimpleName() + ".class", "");
-        System.out.println("SLF4JLocationAwareLog: " + path);
-
-        c = org.slf4j.Marker.class;
-        path = c.getResource(c.getSimpleName() + ".class").getPath().replace(c.getSimpleName() + ".class", "");
-        System.out.println("org.slf4j.Marker: " + path);
     }
 
 

@@ -7,6 +7,7 @@ var addressbookApp = angular.module('addressbookApp', [
     'addressbookControllers'
 ]);
 
+
 addressbookApp.factory('locationService', function () {
     var savedData = {};
 
@@ -26,6 +27,28 @@ addressbookApp.factory('locationService', function () {
         get: get
     }
 
+});
+
+addressbookApp.factory('Auth', function(){
+    var user;
+    var loggedIn;
+
+    return{
+        setUser : function(aUser){
+            user = aUser;
+            loggedIn = true;
+        },
+        logOut : function() {
+            loggedIn = false;
+        },
+        isLoggedIn : function(){
+            if (loggedIn) {
+                return user;
+            } else {
+                return false;
+            }
+        }
+    }
 });
 
 addressbookApp.config(['$routeProvider', '$httpProvider',

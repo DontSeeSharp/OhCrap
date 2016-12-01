@@ -6,12 +6,19 @@ var addressbookControllers = angular.module('addressbookControllers', ['ngMap', 
 
 
 
-addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location', '$http', '$rootScope', '$window',
-	function(NgMap, $scope, locationService, $location, $http, $rootScope, $window) {
-		$scope.userAuthenticated = "bbbb";
-		$rootScope.$watch($rootScope.authenticated, function () {
-			$scope.userAuthenticated = $rootScope.authenticated;
-		});
+addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location', '$http', '$window',
+	function(NgMap, $scope, locationService, $location, $http, $window) {
+        $scope.userAuthenticated = $window.sessionStorage.getItem("loggedIn");
+        if ($window.sessionStorage.getItem("loggedIn") == null) {
+            console.log("null");
+            $scope.userAuthenticated = false;
+        } else {
+            console.log("else");
+            console.log($window.sessionStorage.getItem("loggedIn"));
+            console.log($scope.userAuthenticated);
+        }
+
+
         $scope.allBathrooms = {};
 		$scope.test =
 	    //Code for api request
@@ -60,13 +67,14 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 
 		$scope.logout = function() {
 			$http.post('logout', {}).finally(function() {
-				$rootScope.authenticated = false;
-				$scope.userAuthenticated = false;
-				$scope.$apply();
-				$window.location.reload();
-				$location.path("/");
+                $window.sessionStorage.setItem("loggedIn", false);
+                $scope.userAuthenticated = false;
+                $scope.$digest();
 			});
 		};
+        $scope.signIn = function() {
+            $location.path("/signIn");
+        };
 	}
 ]);
 
@@ -75,10 +83,20 @@ addressbookControllers.controller('loginCtrl', [
 	}
 ]);
 
-addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$location', '$route', '$scope', '$window',
-    function($rootScope, $http, $location, $route, $scope, $window) {
+addressbookControllers.controller('createAccountCtrl',['$http', '$location', '$route', '$scope', '$window',
+    function($http, $location, $route, $scope, $window) {
 
-
+        $scope.textAlert = "Some content";
+        $scope.successTextAlert = "Some content";
+        $scope.showSuccessAlert = true;
+        $scope.showFailAlert = true;
+        // switch flag
+        $scope.switchSuccess = function() {
+            $scope.showSuccessAlert = !$scope.showSuccessAlert;
+        };
+        $scope.switchFail = function() {
+            $scope.showFailAlert = !$scope.showFailAlert;
+        };
 
 		jQuery('.form').find('input, textarea').on('keyup change blur focus', function (e) {
 
@@ -131,10 +149,8 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 		$scope.tab = function(route) {
 			return $route.current && route === $route.current.controller;
 		};
-		$rootScope.authenticated = false;
-		$scope.userAuthenticated = "babaa";
-		var authenticate = function(credentials, callback) {
 
+		var authenticate = function(credentials, callback) {
 			var headers = credentials ? {
 				authorization : "Basic "
 				+ btoa(credentials.username + ":"
@@ -145,17 +161,14 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 				headers : headers
 			}).then(function(response) {
 				if (response.data.name) {
-					$rootScope.authenticated = true;
-					$scope.userAuthenticated = true;
+                    $scope.authenticated = true;
 				} else {
-					$rootScope.authenticated = false;
-					$scope.userAuthenticated = false;
+                    $scope.authenticated = false
 				}
-				callback && callback($rootScope.authenticated);
-			}, function() {
-				$rootScope.authenticated = false;
-				$scope.userAuthenticated = false;
-				callback && callback(false);
+                callback && callback($scope.authenticated);
+            }, function() {
+				$scope.authenticated = false;
+                callback && callback(false);
 			});
 
 		};
@@ -164,20 +177,21 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 
 		$scope.credentials = {};
 		$scope.login = function() {
+            showLoading();
 			console.log("pressed login!");
 			authenticate($scope.credentials, function(authenticated) {
 				if (authenticated) {
+                    $scope.error = false;
 					console.log("Login succeeded");
 					$window.location.reload();
+                    $window.sessionStorage.setItem("loggedIn", true);
 					$location.path("/");
-					$scope.error = false;
-					$rootScope.authenticated = true;
-					$scope.userAuthenticated = true;
+                    showPage();
 				} else {
 					console.log("Login failed");
+                    showPage();
 					$scope.error = true;
-					$rootScope.authenticated = false;
-					$scope.userAuthenticated = false;
+                    $window.sessionStorage.setItem("loggedIn", false);
 				}
 			})
 		};
@@ -186,18 +200,27 @@ addressbookControllers.controller('createAccountCtrl',['$rootScope', '$http', '$
 
 		//------------------------CREATE ACC PART START---------------
 		    $scope.submitAccount = function() {
+						showLoading();
             			$http.post('createUser',
             				{
             					"username": $scope.username,
             					"password": $scope.password
             			})
             				.success(function(data) {
-            					console.log("user created");
-								alert("user created!");
+                                if (data.result == "0") {
+                                    showPage();
+                                    console.log("user created");
+                                    $scope.successTextAlert = "User created!";
+                                    $scope.switchSuccess();
+                                } else if (data.result == "-1") {
+                                    showPage();
+                                    $scope.textAlert = "Username already exists!";
+                                    $scope.switchFail();
+                                }
+
             				})
             				.error(function(data) {
-            					console.log("error!!");
-            					console.error('error: data = ' , data);
+								console.log("error = " , data);
             				});
             		}
 
@@ -310,14 +333,17 @@ addressbookControllers.controller('addLocationCtrl', ['$scope', '$modal', 'locat
 						window.alert('No results found');
 					}
 				} else {
-					window.alert('Geocoder failed due to: ' + status);
+					//window.alert('Geocoder failed due to: ' + status);
+					$scope.textAlert = "Don't switch location so often!";
+					$scope.switchFail()
 				}
 			});
         };
 
 		$scope.textAlert = "Some content";
-		$scope.showSuccessAlert = true;
-		$scope.showFailAlert = true;
+        $scope.successTextAlert = "Some content";
+        $scope.showSuccessAlert = true;
+        $scope.showFailAlert = true;
 		// switch flag
 		$scope.switchSuccess = function() {
 			$scope.showSuccessAlert = !$scope.showSuccessAlert;

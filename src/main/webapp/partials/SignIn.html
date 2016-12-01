@@ -7,7 +7,14 @@
 </head>
 <body>
 <div class="form">
-
+    <div class="alert add-location-alert-success" ng-hide="showSuccessAlert">
+        <button type="button" class="close" data-ng-click="switchSuccess()" >×</button>
+        {{successTextAlert}}
+    </div>
+    <div class="alert add-location-alert-danger" ng-hide="showFailAlert">
+        <button type="button" class="close" data-ng-click="switchFail()" >×</button>
+        {{textAlert}}
+    </div>
     <ul class="tab-group">
         <li class="tab active"><a href="#signup">Sign Up</a></li>
         <li class="tab"><a href="#login">Log In</a></li>
