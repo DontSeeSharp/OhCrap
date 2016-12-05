@@ -58,6 +58,20 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 			}
 		};
 
+		/*Get nearest location*/
+		$scope.getNearestLocation = function() {
+			$http.post('getNearestLocation', {
+				"lat" : vm.map.getCenter().lat(),
+				"lng" : vm.map.getCenter().lng()
+			}).then(function (response) {
+				if (response.data.result == "success") {
+					$window.open("https://www.google.ee/maps?saddr=My+Location&daddr=" + response.data.lat + "," + response.data.lng,"_self");
+				} else {
+					console.log("failed to retrieve closest location.");
+				}
+			});
+		};
+
 		//code to swith url to add location
 		$scope.switchToAddLocation = function() {
 			locationService.set({"lat": vm.map.getCenter().lat().toString(), "lng" : vm.map.getCenter().lng().toString(),

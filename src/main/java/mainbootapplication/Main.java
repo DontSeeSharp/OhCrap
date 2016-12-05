@@ -41,16 +41,13 @@ public class Main {
                     .httpBasic()
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/toilets", "/user", "/#/login", "/index.html", "/home.html", "/partials/login.html", "/lib/**", "/",
+                    .antMatchers("/getNearestLocation", "/toilets", "/user", "/#/login", "/index.html", "/home.html", "/partials/login.html", "/lib/**", "/",
                             "/css", "/images", "/createUser", "/js","/login", "/partials/SignIn.html", "/partials/home.html").permitAll()
                     .anyRequest().authenticated()
                     .and()
-                    .csrf()
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-                    //.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
-                    // .csrf().csrfTokenRepository(csrfTokenRepository())
-
-            // @formatter:on
+                    .csrf().disable();
+                    //.csrf()
+                      //  .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         }
 
         @Autowired

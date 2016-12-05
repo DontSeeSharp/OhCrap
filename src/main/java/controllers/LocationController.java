@@ -3,6 +3,7 @@ package controllers;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import domain.Location;
 import dto.save.SaveLocationRequest;
+import dto.save.getNearestLocationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -61,6 +62,34 @@ public class LocationController {
                     "VALUES(:address, :adder, :lat, :lng, :free, :rating)", hashMap);
             return Collections.singletonMap("result", "Location successfully added to database!");
         }
+    }
+
+    @RequestMapping(value = "getNearestLocation", method = RequestMethod.POST, produces = "application/json")
+    public Map getNearestLocation(@RequestBody getNearestLocationRequest request) {
+        List<Location> uniqueLocations = getUniqueLocations();
+        double currentLat = request.getLat();
+        double currentLng = request.getLng();
+        double minDistance = 999999;
+        Location closestLocation = null;
+        for (Location location : uniqueLocations) {
+            double lat = currentLat - location.getLatitude();
+            double lng = currentLng - location.getLongitude();
+            if (java.lang.Math.sqrt(lat*lat + lng*lng) < minDistance) {
+                closestLocation = location;
+            }
+        }
+        HashMap hashMap = new HashMap();
+        if (closestLocation != null) {
+            System.out.println("----------------------------------------------- success");
+            hashMap.put("result", "success");
+            hashMap.put("lat", closestLocation.getLatitude());
+            hashMap.put("lng", request.getLng());
+        } else {
+            System.out.println("----------------------------------------------- fail");
+            hashMap.put("result", "fail");
+        }
+
+        return hashMap;
     }
 
     public List<Location> getLocations() {
