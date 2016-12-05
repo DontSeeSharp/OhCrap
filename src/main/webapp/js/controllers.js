@@ -60,12 +60,14 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
 
 		/*Get nearest location*/
 		$scope.getNearestLocation = function() {
+			showLoading();
 			$http.post('getNearestLocation', {
 				"lat" : vm.map.getCenter().lat(),
 				"lng" : vm.map.getCenter().lng()
 			}).then(function (response) {
 				if (response.data.result == "success") {
-					$window.open("https://www.google.ee/maps?saddr=My+Location&daddr=" + response.data.lat + "," + response.data.lng,"_self");
+					$window.open("https://www.google.ee/maps?saddr=My+Location&daddr=" + response.data.lat + "," + response.data.lng,"_blank");
+					showPage();
 				} else {
 					console.log("failed to retrieve closest location.");
 				}

@@ -74,7 +74,7 @@ public class LocationController {
         for (Location location : uniqueLocations) {
             double lat = currentLat - location.getLatitude();
             double lng = currentLng - location.getLongitude();
-            if (java.lang.Math.sqrt(lat*lat + lng*lng) < minDistance) {
+            if (Math.abs(Math.sqrt(lat*lat + lng*lng) - Math.sqrt(currentLat*currentLat + currentLng*currentLng)) < minDistance) {
                 closestLocation = location;
             }
         }
@@ -83,7 +83,7 @@ public class LocationController {
             System.out.println("----------------------------------------------- success");
             hashMap.put("result", "success");
             hashMap.put("lat", closestLocation.getLatitude());
-            hashMap.put("lng", request.getLng());
+            hashMap.put("lng", closestLocation.getLongitude());
         } else {
             System.out.println("----------------------------------------------- fail");
             hashMap.put("result", "fail");
