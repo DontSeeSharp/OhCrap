@@ -12,8 +12,21 @@
 </div>
 
 <ng-map  zoom="18" center="[59.395896, 24.671332]" default-style="false" class="height100">
+    <info-window id="myInfoWindow" >
+        <div ng-non-bindable>
+            <h4>Very nice, good paper, no smell, yum yum yum</h4>
+            <p>Here I sit, in the hall of vapors.
+                Some darn fool done stole the papers.
+                The bell has rung I must not linger.
+                Look out ass here comes my finger.
+            </p>
+
+        </div>
+    </info-window>
     <marker position="current" shape="circle" coords="0,0,10" animation="Animation.BOUNCE" centered="true" color="green"></marker>
-    <span ng-repeat="bathroom in allBathrooms"><marker icon="{url:'../images/toilet-icon.png',scaledSize:[50,50]}" position="[{{bathroom.latitude}}, {{bathroom.longitude}}]"></marker></span>
+    <span ng-repeat="bathroom in allBathrooms"><marker icon="{url:'../images/toilet-icon.png',scaledSize:[50,50]}" position="[{{bathroom.latitude}}, {{bathroom.longitude}}]" on-click="showCity()">
+    </marker>
+    </span>
     <div class="addLocationBtn" ng-click="getNearestLocation()"><img src="images/searchToilet.png" class="img-circle"></div>
 </ng-map>
 

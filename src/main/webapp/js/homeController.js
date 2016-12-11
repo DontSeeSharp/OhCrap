@@ -83,5 +83,8 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
         $scope.signIn = function() {
             $location.path("/signIn");
         };
+        $scope.showCity = function() {
+            $scope.map.showInfoWindow('myInfoWindow', this);
+          };
     }
 ]);
