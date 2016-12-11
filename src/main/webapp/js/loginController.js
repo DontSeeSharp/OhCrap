@@ -1,0 +1,4 @@
+addressbookControllers.controller('loginCtrl', [
+    function() {
+    }
+]);
