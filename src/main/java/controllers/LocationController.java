@@ -72,9 +72,15 @@ public class LocationController {
         double minDistance = 999999;
         Location closestLocation = null;
         for (Location location : uniqueLocations) {
-            double lat = currentLat - location.getLatitude();
-            double lng = currentLng - location.getLongitude();
-            if (Math.abs(Math.sqrt(lat*lat + lng*lng) - Math.sqrt(currentLat*currentLat + currentLng*currentLng)) < minDistance) {
+            double markerLat = location.getLatitude();
+            double markerLng = location.getLongitude();
+            double theta = currentLng - markerLng;
+            double dist = Math.sin(deg2rad(currentLat)) * Math.sin(deg2rad(markerLat)) + Math.cos(deg2rad(currentLat)) * Math.cos(deg2rad(markerLat)) * Math.cos(deg2rad(theta));
+            dist = Math.acos(dist);
+            dist = rad2deg(dist);
+            dist = dist * 60 * 1.1515;
+            dist = dist * 1.609344;
+            if (dist < minDistance) {
                 closestLocation = location;
             }
         }
@@ -145,5 +151,19 @@ public class LocationController {
             location.setAdder(res.getString("adder"));
             return location;
         }
+    }
+
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+	/*::	This function converts decimal degrees to radians						 :*/
+	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    private static double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+	/*::	This function converts radians to decimal degrees						 :*/
+	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    private static double rad2deg(double rad) {
+        return (rad * 180 / Math.PI);
     }
 }
