@@ -10,7 +10,6 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
             console.log($scope.userAuthenticated);
         }
 
-
         $scope.allBathrooms = {};
         $scope.test =
             //Code for api request
@@ -83,5 +82,12 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
         $scope.signIn = function() {
             $location.path("/signIn");
         };
+        $scope.rating = "";
+        $scope.showToiletInfo = function(event, toilet) {
+            $scope.selectedLocation = toilet;
+            $scope.rating = toilet.rating;
+            console.log($scope.rating);
+            $scope.map.showInfoWindow('myInfoWindow', this);
+          };
     }
 ]);
