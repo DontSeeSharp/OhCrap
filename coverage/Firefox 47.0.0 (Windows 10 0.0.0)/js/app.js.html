@@ -151,12 +151,12 @@
 &nbsp;
 /* App Module */
 &nbsp;
-var addressbookApp = angular.module('addressbookApp', [
+var ohCrapApp = angular.module('ohCrapApp', [
     'ngRoute',
     'addressbookControllers'
 ]);
 &nbsp;
-addressbookApp.factory('locationService', function () {
+ohCrapApp.factory('locationService', function () {
     var savedData = {};
 &nbsp;
 <span class="fstat-no" title="function not covered" >    function set(data) {</span>
@@ -177,7 +177,7 @@ addressbookApp.factory('locationService', function () {
 &nbsp;
 });
 &nbsp;
-addressbookApp.config(['$routeProvider', '$httpProvider',
+ohCrapApp.config(['$routeProvider', '$httpProvider',
     function ($routeProvider, $httpProvider) {
         $routeProvider.when('/', {
             templateUrl: 'partials/home.html',

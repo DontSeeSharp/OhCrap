@@ -2,7 +2,7 @@
  * Created by Hendrig on 11.12.2016.
  */
 describe('HomeController', function() {
-    beforeEach(module('addressbookApp'));
+    beforeEach(module('ohCrapApp'));
     beforeEach(angular.mock.http.init);
     afterEach(angular.mock.http.reset);
 

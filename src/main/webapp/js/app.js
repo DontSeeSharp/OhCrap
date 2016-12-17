@@ -2,13 +2,13 @@
 
 /* App Module */
 
-var addressbookApp = angular.module('addressbookApp', [
+var ohCrapApp = angular.module('ohCrapApp', [
     'ngRoute',
     'addressbookControllers'
 ]);
 
 
-addressbookApp.factory('locationService', function () {
+ohCrapApp.factory('locationService', function () {
     var savedData = {};
 
     function set(data) {
@@ -29,7 +29,7 @@ addressbookApp.factory('locationService', function () {
 
 });
 
-addressbookApp.factory('Auth', function(){
+ohCrapApp.factory('Auth', function(){
     var user;
     var loggedIn;
 
@@ -51,7 +51,7 @@ addressbookApp.factory('Auth', function(){
     }
 });
 
-addressbookApp.config(['$routeProvider', '$httpProvider',
+ohCrapApp.config(['$routeProvider', '$httpProvider',
     function ($routeProvider, $httpProvider) {
         $routeProvider.when('/', {
             templateUrl: 'partials/home.html',

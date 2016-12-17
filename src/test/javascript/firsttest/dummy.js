@@ -1,5 +1,5 @@
 describe('HomeController', function() {
-  beforeEach(module('addressbookApp'));
+  beforeEach(module('ohCrapApp'));
   beforeEach(angular.mock.http.init);
   afterEach(angular.mock.http.reset);
 
@@ -32,7 +32,7 @@ describe('HomeController', function() {
 });
 
 describe('addLocationCtrl', function() {
-  beforeEach(module('addressbookApp'));
+  beforeEach(module('ohCrapApp'));
 
   var $controller;
 
