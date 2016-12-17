@@ -16,9 +16,11 @@
         <div ng-non-bindable>
             <h3>{{selectedLocation.address}}</h3>
             <h4>{{selectedLocation.rating}}</h4>
+            <div>
             <span class="stars">
                 <span ng-style="{ 'width': getStars(selectedLocation.rating) }"></span>
             </span>
+                </div>
             <h4>Priced: {{selectedLocation.free}}</h4>
         </div>
 
