@@ -22,6 +22,7 @@ module.exports = function(config) {
       'node_modules/angular-bootstrap/ui-bootstrap-tpls.js',
       'src/main/webapp/js/app.js',
       'src/main/webapp/js/controllers.js',
+      'src/main/webapp/js/homeController.js',
       //'src/main/webapp/js/*.js', siit tuleb loading.js juurde, hetkel me ei taha seda
       'src/test/javascript/**/*.js',
       'src/test/javascript/**/*.js'
