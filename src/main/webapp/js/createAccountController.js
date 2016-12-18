@@ -1,4 +1,4 @@
-addressbookControllers.controller('createAccountCtrl',['$http', '$location', '$route', '$scope', '$window',
+ohcrapControllers.controller('createAccountCtrl',['$http', '$location', '$route', '$scope', '$window',
     function($http, $location, $route, $scope, $window) {
 
         $scope.textAlert = "Some content";

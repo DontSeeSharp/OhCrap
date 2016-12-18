@@ -19,10 +19,10 @@ module.exports = function(config) {
       'node_modules/angular-route/angular-route.js',
       'src/main/webapp/lib/ng-map/ng-map.min.js',
       'node_modules/angular-mocks/angular-mocks.js',
+      'node_modules/angular-bootstrap/ui-bootstrap-tpls.js',
       'src/main/webapp/js/app.js',
       'src/main/webapp/js/controllers.js',
-      'src/main/webapp/js/index.js',
-      'src/main/webapp/js/map.js',
+      //'src/main/webapp/js/*.js', siit tuleb loading.js juurde, hetkel me ei taha seda
       'src/test/javascript/**/*.js',
       'src/test/javascript/**/*.js'
     ],

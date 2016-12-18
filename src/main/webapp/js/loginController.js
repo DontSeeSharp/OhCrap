@@ -1,4 +1,4 @@
-addressbookControllers.controller('loginCtrl', [
+ohcrapControllers.controller('loginCtrl', [
     function() {
     }
 ]);

@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-var addressbookControllers = angular.module('addressbookControllers', ['ngMap', 'ui.bootstrap']);
+var ohcrapControllers = angular.module('ohcrapControllers', ['ngMap', 'ui.bootstrap']);
 
 
 

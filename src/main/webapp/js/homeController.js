@@ -1,4 +1,4 @@
-addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location', '$http', '$window',
+ohcrapControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location', '$http', '$window',
     function(NgMap, $scope, locationService, $location, $http, $window) {
         $scope.userAuthenticated = $window.sessionStorage.getItem("loggedIn");
         if ($window.sessionStorage.getItem("loggedIn") == null) {
@@ -50,7 +50,7 @@ addressbookControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationServi
         };
 
         /*Get nearest location*/
-        $scope.getNearestLocation = function() {
+        $scope.getNearestLocation = function() {'' +
             showLoading();
             $http.post('getNearestLocation', {
                 "lat" : vm.map.getCenter().lat(),

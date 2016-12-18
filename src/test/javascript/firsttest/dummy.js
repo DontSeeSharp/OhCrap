@@ -1,25 +1,27 @@
 describe('HomeController', function() {
   beforeEach(module('ohCrapApp'));
-  beforeEach(angular.mock.http.init);
-  afterEach(angular.mock.http.reset);
 
   var $controller;
+  var $httpBackend;
 
-  beforeEach(inject(function(_$controller_, _$httpBackend_){
+  beforeEach(inject(function(_$httpBackend_, _$controller_){
+    console.log("in beforeEach...");
     // The injector unwraps the underscores (_) from around the parameter names when matching
-    $controller = _$controller_;
     $httpBackend = _$httpBackend_;
+    console.log("-----------------------------");
+    $controller = _$controller_;
     $scope = {};
 
     // Note that this HTTP backend is ngMockE2E's, and will make a real HTTP request
-    
+
   }));
+
 
     it('gets bathroom json', function(done) {
       //$httpBackend.whenGET('http://localhost:8090/toilets').passThrough();
       $httpBackend.whenGET('toilets').respond([{"id":1,"name":null,"address":"ehitajate tee 5","latitude":59.4035,"longitude":24.6882}]);
       var controller = $controller('HomeCtrl', { $scope: $scope });
-      
+
       $scope.getBathrooms();
 
       setTimeout(function() {
@@ -30,7 +32,7 @@ describe('HomeController', function() {
 
     });
 });
-
+/*
 describe('addLocationCtrl', function() {
   beforeEach(module('ohCrapApp'));
 
@@ -57,3 +59,4 @@ describe('addLocationCtrl', function() {
 
     });
 });
+    */

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for js\loading.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">js/</a> loading.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">41.18% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>7/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">41.18% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>7/17</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Created by Hendrig on 22.09.2016.
+ */
+function onReady(callback) {
+    var intervalID = window.setInterval(checkReady, 1000);
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function checkReady() {</span>
+<span class="cstat-no" title="statement not covered" >        if (document.getElementsByTagName('body')[0] !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >            window.clearInterval(intervalID);</span>
+<span class="cstat-no" title="statement not covered" >            callback.call(this);</span>
+        }
+    }
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function show(id, value) {</span>
+<span class="cstat-no" title="statement not covered" >    document.getElementById(id).style.display = value ? 'block' : 'none';</span>
+}
+&nbsp;
+onReady(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >    show('page', true);</span>
+<span class="cstat-no" title="statement not covered" >    show('loading', false);</span>
+});
+&nbsp;
+<span class="fstat-no" title="function not covered" >function showPage() {</span>
+<span class="cstat-no" title="statement not covered" >    show('page', true);</span>
+<span class="cstat-no" title="statement not covered" >    show('loading', false);</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function showLoading() {</span>
+<span class="cstat-no" title="statement not covered" >    show('page', false);</span>
+<span class="cstat-no" title="statement not covered" >    show('loading', true);</span>
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 18 2016 23:27:38 GMT+0200 (FLE Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

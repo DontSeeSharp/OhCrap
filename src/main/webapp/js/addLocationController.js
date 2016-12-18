@@ -1,4 +1,4 @@
-addressbookControllers.controller('addLocationCtrl', ['$scope', '$modal', 'locationService', 'NgMap','$location', '$http',
+ohcrapControllers.controller('addLocationCtrl', ['$scope', '$modal', 'locationService', 'NgMap','$location', '$http',
     function($scope, $modal, locationService, NgMap, $location, $http) {
         $scope.rating;
         $scope.cost;

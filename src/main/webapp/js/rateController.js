@@ -1,4 +1,4 @@
-addressbookControllers.controller('rateCtrl', ['$scope', '$modalInstance', 'NgMap','$location', '$http',
+ohcrapControllers.controller('rateCtrl', ['$scope', '$modalInstance', 'NgMap','$location', '$http',
     function($scope, $modalInstance, NgMap, $location, $http) {
         $scope.data = {};
         $scope.submitRatingInfo = function() {

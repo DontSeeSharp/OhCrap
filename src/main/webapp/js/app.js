@@ -4,7 +4,7 @@
 
 var ohCrapApp = angular.module('ohCrapApp', [
     'ngRoute',
-    'addressbookControllers'
+    'ohcrapControllers'
 ]);
 
 
