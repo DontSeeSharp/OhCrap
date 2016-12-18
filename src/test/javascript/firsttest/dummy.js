@@ -1,14 +1,13 @@
 describe('HomeController', function() {
   beforeEach(module('ohCrapApp'));
 
+
   var $controller;
   var $httpBackend;
 
   beforeEach(inject(function(_$httpBackend_, _$controller_){
-    console.log("in beforeEach...");
     // The injector unwraps the underscores (_) from around the parameter names when matching
     $httpBackend = _$httpBackend_;
-    console.log("-----------------------------");
     $controller = _$controller_;
     $scope = {};
 
@@ -19,17 +18,15 @@ describe('HomeController', function() {
 
     it('gets bathroom json', function(done) {
       //$httpBackend.whenGET('http://localhost:8090/toilets').passThrough();
-      $httpBackend.whenGET('toilets').respond([{"id":1,"name":null,"address":"ehitajate tee 5","latitude":59.4035,"longitude":24.6882}]);
+      $httpBackend.whenGET('toilets').respond(200, [{"id":30,"name":null,"address":"E. Vilde tee 52, 13416 Tallinn, Eesti","latitude":59.403,"longitude":24.6944,"adder":"user","rating":0,"free":""}]);
       var controller = $controller('HomeCtrl', { $scope: $scope });
 
       $scope.getBathrooms();
 
-      setTimeout(function() {
       var emptyBathrooms = {};
+      $httpBackend.flush();
       expect($scope.allBathrooms).not.toEqual(emptyBathrooms);
       done();
-      }, 1000);
-
     });
 });
 /*

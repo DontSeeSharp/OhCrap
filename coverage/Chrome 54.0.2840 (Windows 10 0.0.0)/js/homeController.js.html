@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">38.6% </span>
+        <span class="strong">41.07% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>22/57</span>
+        <span class='fraction'>23/56</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">16.67% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>1/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">13.33% </span>
+        <span class="strong">20% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/15</span>
+        <span class='fraction'>3/15</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">39.29% </span>
+        <span class="strong">41.07% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>22/56</span>
+        <span class='fraction'>23/56</span>
       </div>
     </div>
   </div>
@@ -142,8 +142,7 @@
 97
 98
 99
-100
-101</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+100</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -156,14 +155,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -196,7 +194,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -256,19 +254,18 @@
         }
 &nbsp;
         $scope.allBathrooms = {};
-        $scope.test =
-            //Code for api request
-            $scope.getBathrooms = function() {
-                $http.get('toilets')
-                    .success(<span class="fstat-no" title="function not covered" >function(data) {</span>
-<span class="cstat-no" title="statement not covered" >                        $scope.allBathrooms = data;</span>
-<span class="cstat-no" title="statement not covered" >                        console.log($scope.allBathrooms);</span>
-                    })
-                    .error(<span class="fstat-no" title="function not covered" >function(data) {</span>
-<span class="cstat-no" title="statement not covered" >                        console.log("error!!");</span>
-<span class="cstat-no" title="statement not covered" >                        console.error('error: data = ' , data);</span>
-                    });
-            };
+&nbsp;
+        //Code for api request
+        $scope.getBathrooms = function() {
+            $http.get('toilets')
+                .success(function(data) {
+                    $scope.allBathrooms = data;
+                })
+                .error(<span class="fstat-no" title="function not covered" >function(data) {</span>
+<span class="cstat-no" title="statement not covered" >                    console.log("error!!");</span>
+<span class="cstat-no" title="statement not covered" >                    console.error('error: data = ' , data);</span>
+                });
+        };
         $scope.getBathrooms();
 &nbsp;
         //Code for google maps api
@@ -295,8 +292,8 @@
         };
 &nbsp;
         /*Get nearest location*/
-        $scope.getNearestLocation = <span class="fstat-no" title="function not covered" >function() {<span class="cstat-no" title="statement not covered" ></span>'' +</span>
-            showLoading();
+        $scope.getNearestLocation = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >            showLoading();</span>
 <span class="cstat-no" title="statement not covered" >            $http.post('getNearestLocation', {</span>
                 "lat" : vm.map.getCenter().lat(),
                 "lng" : vm.map.getCenter().lng()
@@ -349,7 +346,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Dec 18 2016 23:51:31 GMT+0200 (FLE Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Dec 19 2016 00:17:41 GMT+0200 (FLE Standard Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

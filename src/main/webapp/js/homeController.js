@@ -11,19 +11,18 @@ ohcrapControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', 
         }
 
         $scope.allBathrooms = {};
-        $scope.test =
-            //Code for api request
-            $scope.getBathrooms = function() {
-                $http.get('toilets')
-                    .success(function(data) {
-                        $scope.allBathrooms = data;
-                        console.log($scope.allBathrooms);
-                    })
-                    .error(function(data) {
-                        console.log("error!!");
-                        console.error('error: data = ' , data);
-                    });
-            };
+
+        //Code for api request
+        $scope.getBathrooms = function() {
+            $http.get('toilets')
+                .success(function(data) {
+                    $scope.allBathrooms = data;
+                })
+                .error(function(data) {
+                    console.log("error!!");
+                    console.error('error: data = ' , data);
+                });
+        };
         $scope.getBathrooms();
 
         //Code for google maps api
@@ -50,7 +49,7 @@ ohcrapControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', 
         };
 
         /*Get nearest location*/
-        $scope.getNearestLocation = function() {'' +
+        $scope.getNearestLocation = function() {
             showLoading();
             $http.post('getNearestLocation', {
                 "lat" : vm.map.getCenter().lat(),
