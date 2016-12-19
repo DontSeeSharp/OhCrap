@@ -85,7 +85,7 @@ ohcrapControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', 
             $scope.rating = toilet.rating;
             console.log($scope.rating);
             $scope.map.showInfoWindow('myInfoWindow', this);
-          };
+        };
 
         $scope.getStars = function(rating) {
             // Get the value

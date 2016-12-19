@@ -47,4 +47,8 @@ describe('HomeController', function() {
         expect($scope.allBathrooms).not.toEqual(emptyBathrooms);
         done();
     });
+
+    it()
+
+
 });
