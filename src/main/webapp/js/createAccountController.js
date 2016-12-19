@@ -97,9 +97,7 @@ ohcrapControllers.controller('createAccountCtrl',['$http', '$location', '$route'
             authenticate($scope.credentials, function(authenticated) {
                 if (authenticated) {
                     $scope.error = false;
-                    console.log("Login succeeded");
-                    $window.location.reload();
-                    $window.sessionStorage.setItem("loggedIn", true);
+                    $window.sessionStorage["loggedIn"] = true;
                     $location.path("/");
                     showPage();
                 } else {
