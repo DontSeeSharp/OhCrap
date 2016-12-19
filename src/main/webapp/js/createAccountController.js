@@ -106,7 +106,7 @@ ohcrapControllers.controller('createAccountCtrl',['$http', '$location', '$route'
                     console.log("Login failed");
                     showPage();
                     $scope.error = true;
-                    $window.sessionStorage.setItem("loggedIn", false);
+                    $window.sessionStorage["loggedIn"] = false;
                 }
             })
         };

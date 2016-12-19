@@ -1,13 +1,12 @@
 ohcrapControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location', '$http', '$window',
     function(NgMap, $scope, locationService, $location, $http, $window) {
         $scope.userAuthenticated = $window.sessionStorage.getItem("loggedIn");
-        if ($window.sessionStorage.getItem("loggedIn") == null) {
-            console.log("null");
+        if ($scope.userAuthenticated == null || $scope.userAuthenticated == "false") {
             $scope.userAuthenticated = false;
+        } else if($scope.userAuthenticated == "true") {
+            $scope.userAuthenticated = true;
         } else {
-            console.log("else");
-            console.log($window.sessionStorage.getItem("loggedIn"));
-            console.log($scope.userAuthenticated);
+            $scope.userAuthenticated = false;
         }
 
         $scope.allBathrooms = {};
@@ -73,9 +72,8 @@ ohcrapControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', 
 
         $scope.logout = function() {
             $http.post('logout', {}).finally(function() {
-                $window.sessionStorage.setItem("loggedIn", false);
-                $scope.userAuthenticated = false;
-                $scope.$digest();
+                $window.sessionStorage["loggedIn"] = false;
+                $window.location.reload();
             });
         };
         $scope.signIn = function() {
