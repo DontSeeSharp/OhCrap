@@ -4,7 +4,7 @@
 <h1> Rate the bathroom </h1>
 <body>
 <h2> Overall condition </h2>
-
+<div class = "ratePopup">
 <span class="rating">
     <input ng-model="data.rating" ng-value="'5'" type="radio" class="rating-input"
            id="rating-input-1-5" name="rating-input-1">
@@ -34,4 +34,6 @@
     </form>
     <button class="button" ng-click="submitRatingInfo()">Submit!</button>
 </div>
+    </div>
+<br>
 </body>
