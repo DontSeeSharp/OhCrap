@@ -24,7 +24,12 @@ module.exports = function(config) {
       'src/main/webapp/js/controllers.js',
       'src/main/webapp/js/*.js',
       'src/test/javascript/**/*.js',
-      'src/test/javascript/**/*.js'
+      'src/test/javascript/**/*.js',
+      'src/main/webapp/partials/addLocation.html',
+      'src/main/webapp/partials/home.html',
+      'src/main/webapp/partials/login.html',
+      'src/main/webapp/partials/rate.html',
+      'src/main/webapp/partials/SignIn.html'
     ],
 
 

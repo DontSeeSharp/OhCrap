@@ -1,6 +1,7 @@
 ohcrapControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', '$location', '$http', '$window',
     function(NgMap, $scope, locationService, $location, $http, $window) {
         $scope.userAuthenticated = $window.sessionStorage.getItem("loggedIn");
+        $scope.status;
         if ($scope.userAuthenticated == null || $scope.userAuthenticated == "false") {
             $scope.userAuthenticated = false;
         } else if($scope.userAuthenticated == "true") {
@@ -16,10 +17,10 @@ ohcrapControllers.controller('HomeCtrl', ['NgMap', '$scope', 'locationService', 
             $http.get('toilets')
                 .success(function(data) {
                     $scope.allBathrooms = data;
+                    $scope.status = "success";
                 })
                 .error(function(data) {
-                    console.log("error!!");
-                    console.error('error: data = ' , data);
+                    $scope.status = "fail";
                 });
         };
         $scope.getBathrooms();
