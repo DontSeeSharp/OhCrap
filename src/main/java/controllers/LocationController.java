@@ -79,6 +79,7 @@ public class LocationController {
             dist = dist * 60 * 1.1515;
             dist = dist * 1.609344;
             if (dist < minDistance) {
+                minDistance = dist;
                 closestLocation = location;
             }
         }
