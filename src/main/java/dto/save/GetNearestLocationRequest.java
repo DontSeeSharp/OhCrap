@@ -3,7 +3,7 @@ package dto.save;
 /**
  * Created by Hendrig on 04.12.2016.
  */
-public class getNearestLocationRequest {
+public class GetNearestLocationRequest {
 
     private double lat;
     private double lng;

@@ -3,17 +3,14 @@ package controllers;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import domain.Location;
 import dto.save.SaveLocationRequest;
-import dto.save.getNearestLocationRequest;
+import dto.save.GetNearestLocationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.sql.DataSource;
-import java.security.Principal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -26,7 +23,7 @@ public class LocationController {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
-    public LocationController(DataSource dataSource2) {
+    public LocationController() {
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setUser("dontsees_guest");
         dataSource.setPassword("1Forgot1t");
@@ -65,7 +62,7 @@ public class LocationController {
     }
 
     @RequestMapping(value = "getNearestLocation", method = RequestMethod.POST, produces = "application/json")
-    public Map getNearestLocation(@RequestBody getNearestLocationRequest request) {
+    public Map getNearestLocation(@RequestBody GetNearestLocationRequest request) {
         List<Location> uniqueLocations = getUniqueLocations();
         double currentLat = request.getLat();
         double currentLng = request.getLng();
@@ -98,7 +95,7 @@ public class LocationController {
         return hashMap;
     }
 
-    public List<Location> getLocations() {
+    private List<Location> getLocations() {
         return jdbcTemplate.query("select * from locations", new LocationRowMapper());
     }
 
