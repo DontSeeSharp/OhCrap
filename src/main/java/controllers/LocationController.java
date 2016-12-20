@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -23,7 +24,7 @@ public class LocationController {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
-    public LocationController() {
+    public LocationController(DataSource datasource1) {
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setUser("dontsees_guest");
         dataSource.setPassword("1Forgot1t");

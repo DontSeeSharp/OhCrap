@@ -1,5 +1,6 @@
 package controllers;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import domain.Account;
 import domain.Location;
 import dto.save.GetNearestLocationRequest;
@@ -34,7 +35,7 @@ public class LocationControllerTest {
 
     @Before
     public void setUp() {
-        locationController = new LocationController();
+        locationController = new LocationController(new MysqlDataSource());
     }
 
     @Test

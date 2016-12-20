@@ -33,7 +33,7 @@ public class AccountController {
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
-    public AccountController() {
+    public AccountController(DataSource dataSource1) {
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setUser("dontsees_guest");
         dataSource.setPassword("1Forgot1t");
