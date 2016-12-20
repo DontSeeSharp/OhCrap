@@ -12,14 +12,19 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithMockUser;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -36,6 +41,8 @@ public class LocationControllerTest {
     @Before
     public void setUp() {
         locationController = new LocationController(new MysqlDataSource());
+
+
     }
 
     @Test
@@ -49,17 +56,37 @@ public class LocationControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "ram", roles={"ADMIN"})
-    public void addToilet() throws Exception {
+    public void addToiletSuccessfully() throws Exception {
+        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+        list.add(new SimpleGrantedAuthority("ROLE_USER"));
+        String uniqueUsername = new Timestamp(System.currentTimeMillis()).toString();
+        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(uniqueUsername, "password" ,list);
+        SecurityContextHolder.getContext().setAuthentication(auth);
 
         SaveLocationRequest saveLocationRequest = new SaveLocationRequest();
-        saveLocationRequest.setAddress("lalaa");
-        saveLocationRequest.setLat(59.403);
-        saveLocationRequest.setLng(24.6944);
+        saveLocationRequest.setAddress("Akadeemia tee 3, 12611 Tallinn, Eesti");
+        saveLocationRequest.setLat(59.396408431731025);
+        saveLocationRequest.setLng(24.670130137806716);
         saveLocationRequest.setRating(4);
         saveLocationRequest.setFree("yes");
-        locationController.addToilet(saveLocationRequest);
+        Map result = locationController.addToilet(saveLocationRequest);
+        Map expectedResult = Collections.singletonMap("result", "Location successfully added to database!");
+        assertEquals(expectedResult, result);
+    }
 
+    @Test
+    public void failAddingToiletWithSameUserToSameLocation() throws Exception {
+        addToiletSuccessfully();
+
+        SaveLocationRequest saveLocationRequest = new SaveLocationRequest();
+        saveLocationRequest.setAddress("Akadeemia tee 3, 12611 Tallinn, Eesti");
+        saveLocationRequest.setLat(59.396408431731025);
+        saveLocationRequest.setLng(24.670130137806716);
+        saveLocationRequest.setRating(4);
+        saveLocationRequest.setFree("yes");
+        Map result = locationController.addToilet(saveLocationRequest);
+        Map expectedResult = Collections.singletonMap("result", "You can't enter same location twice!");
+        assertEquals(expectedResult, result);
     }
 
     @Test

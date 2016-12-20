@@ -49,11 +49,6 @@ public class AccountController {
     }
 
 
-    @RequestMapping(value = "getUsers")
-    public List<Account> getUsers() {
-        return jdbcTemplate.query("select * from userdata", new AccountMapper());
-    }
-
     @RequestMapping(value = "createUser", method = RequestMethod.POST)
     public Map createUser(@RequestBody Account request) {
         HashMap hashMap;
@@ -92,6 +87,5 @@ public class AccountController {
             account.setPassword(res.getString("password"));
             return account;
         }
-
     }
 }

@@ -84,15 +84,12 @@ public class LocationController {
         }
         HashMap hashMap = new HashMap();
         if (closestLocation != null) {
-            System.out.println("----------------------------------------------- success");
             hashMap.put("result", "success");
             hashMap.put("lat", closestLocation.getLatitude());
             hashMap.put("lng", closestLocation.getLongitude());
         } else {
-            System.out.println("----------------------------------------------- fail");
             hashMap.put("result", "fail");
         }
-
         return hashMap;
     }
 
