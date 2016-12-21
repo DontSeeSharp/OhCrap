@@ -2,14 +2,17 @@ package controllers;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import domain.Location;
-import dto.save.SaveLocationRequest;
 import dto.save.GetNearestLocationRequest;
+import dto.save.SaveLocationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;

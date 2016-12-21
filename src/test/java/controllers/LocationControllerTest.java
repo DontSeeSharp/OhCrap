@@ -1,17 +1,15 @@
 package controllers;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
-import domain.Account;
 import domain.Location;
 import dto.save.GetNearestLocationRequest;
 import dto.save.SaveLocationRequest;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+<<<<<<< Updated upstream
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,6 +21,10 @@ import org.springframework.security.test.context.support.WithMockUser;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
+=======
+import org.springframework.security.test.context.support.WithMockUser;
+
+>>>>>>> Stashed changes
 import java.util.List;
 import java.util.Map;
 
