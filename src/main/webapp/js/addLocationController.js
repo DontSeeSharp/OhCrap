@@ -22,6 +22,7 @@ ohcrapControllers.controller('addLocationCtrl', ['$scope', '$modal', 'locationSe
             return $modal.open({
                 templateUrl: 'partials/rate.html',
                 controller : 'rateCtrl',
+                windowClass: 'add-location-pop-up'
             });
 
         };

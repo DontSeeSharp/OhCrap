@@ -29,8 +29,11 @@
 <h2> Free </h2>
 <div>
     <form class="input-center">
-        <input ng-model="data.cost" ng-value="'Yes'" type="radio"  name="free" checked> Yes<br>
-        <input ng-model="data.cost" type="radio" name="free" ng-value="'No'"> No<br>
+        <input class="radio-inline__input" id="item-1" ng-model="data.cost" ng-value="'Yes'" type="radio"  name="radiobox">
+        <label class="radio-inline__label" for="item-1">Yes</label>
+        <input class="radio-inline__input" id="item-2" ng-model="data.cost" type="radio" name="radiobox" ng-value="'No'">
+        <label class="radio-inline__label" for="item-2">No</label>
+        <br>
     </form>
     <button class="button" ng-click="submitRatingInfo()">Submit!</button>
 </div>

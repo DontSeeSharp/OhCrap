@@ -1,15 +1,15 @@
 <input class="pac-input controls position" size=80 ng-model="selectedAddress" readonly>
 <div class="alert add-location-alert-success" ng-hide="showSuccessAlert">
     <button type="button" class="close" data-ng-click="switchBool('showSuccessAlert')" >×</button>
-    <strong>Done!</strong> {{successTextAlert}}
+    {{successTextAlert}}
 </div>
 <div class="alert add-location-alert-success" ng-hide="showSuccessAlert">
     <button type="button" class="close" data-ng-click="switchSuccess()" >×</button>
-    <strong>Done!</strong> {{successTextAlert}}
+    {{successTextAlert}}
 </div>
 <div class="alert add-location-alert-danger" ng-hide="showFailAlert">
     <button type="button" class="close" data-ng-click="switchFail()" >×</button>
-    <strong>Done!</strong> {{textAlert}}
+    {{textAlert}}
 </div>
 <div class="backBtn" ng-click="switchToHome()"><img src="images/backbtn.png" > </div>
 
