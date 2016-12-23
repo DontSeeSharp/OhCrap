@@ -67,7 +67,7 @@ ohcrapControllers.controller('addLocationCtrl', ['$scope', '$modal', 'locationSe
 
         $scope.currentCenterLocation = {"lat": $scope.location.lat, "lng" : $scope.location.lng};
 
-        $scope.selectedAddress = "No addresses selectedd";
+        $scope.selectedAddress = "No addresses selected";
 
         $scope.getAddressFromCenterLocation = function() {
             $scope.currentCenterLocation.lat = vm.map.getCenter().lat().toString();

@@ -18,15 +18,10 @@ import org.springframework.security.test.context.support.WithMockUser;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
+import org.springframework.security.test.context.support.WithMockUser;
 import java.util.List;
 import java.util.Map;
-
 import static org.junit.Assert.assertEquals;
-
-//<<<<<<< Updated upstream
-//=======
-//>>>>>>> Stashed changes
-
 /**
  * Created by Hendrig on 20.12.2016.
  */
