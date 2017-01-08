@@ -1,5 +1,11 @@
 ohcrap  
-========  
+========   
+Full stack:  
+Java (Spring + Spring Security + Unit tests)  
+AngularJS  
+Karma + Jasmine for javascript unit tests  
+Istanbul for javascript code coverage  
+  
 ### Instructions to get project running  
 1)Export dontsees_ohcrap.sql to database  
 2)Change database configuration in AccountController and LocationController  
