@@ -1,28 +1,27 @@
 ohcrap  
 ========  
-### Instructions for current use  
-1)run "py -m http.server" in partials folder (you need to have python installed for that)  
+### Instructions to get project running  
+1)Export dontsees_ohcrap.sql to database  
+2)Change database configuration in AccountController and LocationController  
   
-### Making war package for tomcat  
-1)open command prompt in project root  
-2)run "mvn package"  
-  
-### TODO: installing dependencies  
-1)open command prompt in project root  
-2)run "npm install"  
-3)run "mvn install"
+3)open command prompt in project root  
+4)run "npm install"  
+5)run "mvn install"  
+6)compile project
 
-### Testing
-##Works with karma for javascript test and Istanbul for coverage
-1)open command prompt in project root
-2)run "karma start"
-3)coverage is saved under "/coverage"
+Project works with spring boot so just compile and run Main
+
+
+## Testing  
+###Works with karma for javascript test and Istanbul for coverage
+1)open command prompt in project root  
+2)npm install angular@1.5.9  
+3)angular-mocks@1.5.9  
+4)angular-route@1.5.9  
+5)run "karma start"  
+6)coverage is saved under "/coverage"    
+   
+For some reason karma doesn't work with angular 1.5.9+
   
 Additionally, this project contains no XML. Spring config is fully annotation driven and the web.xml is omitted per Servlet 3.0 spec.  
-  
-### Resources  
-  
-* http://www.rockhoppertech.com/blog/spring-mvc-configuration-without-xml/
-* http://www.java-allandsundry.com/2012/11/spring-test-mvc-with-spring-32rc1.html
-* http://www.petrikainulainen.net/programming/spring-framework/unit-testing-of-spring-mvc-controllers-normal-controllers/
-* http://www.javacodegeeks.com/2012/10/junit-testing-spring-service-and-dao.html
+

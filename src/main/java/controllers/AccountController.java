@@ -35,10 +35,10 @@ public class AccountController {
     @Autowired
     public AccountController(DataSource dataSource1) {
         MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setUser("dontsees_guest");
-        dataSource.setPassword("1Forgot1t");
-        dataSource.setDatabaseName("dontsees_ohcrap");
-        dataSource.setServerName("ns8527.hostgator.com");
+        dataSource.setUser("------");
+        dataSource.setPassword("------");
+        dataSource.setDatabaseName("------");
+        dataSource.setServerName("------");
         dataSource.setPortNumber(3306);
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
