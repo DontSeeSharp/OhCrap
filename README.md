@@ -1,6 +1,8 @@
 ohcrap  
-========   
-Full stack:  
+========  
+###Project description  
+This project lets users make an account and add toilet locations to a map. Project uses simple crowsource'ing to display entered locations on map.
+###Full stack:  
 Java (Spring + Spring Security + Unit tests)  
 AngularJS  
 Karma + Jasmine for javascript unit tests  
